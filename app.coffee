@@ -4,8 +4,11 @@ favicon = require("serve-favicon")
 logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
+session = require('express-session')
+# routing
 routes = require("./routes/index")
-users = require("./routes/users")
+mypage = require("./routes/mypage")
+
 app = express()
 
 # view engine setup
@@ -18,10 +21,17 @@ app.use logger("dev")
 app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
+app.use session(
+  secret: process.env.SESSION_SECRET or "session secret"
+  resave: false
+  saveUninitialized: false
+)
 app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
+
+# routing
 app.use "/", routes
-app.use "/users", users
+app.use "/mypage", mypage
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->
