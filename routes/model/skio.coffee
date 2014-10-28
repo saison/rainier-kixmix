@@ -16,7 +16,7 @@ socketio = ->
     # メッセージ送信（送信者にも送られる）
     socket.on "toAll", (data) ->
       console.log "toAll"
-      io.sockets.emit "toClient",
+      io.sockets.emit "toClient"
         # value: data.value
       return
 
@@ -24,7 +24,7 @@ socketio = ->
     socket.on "toServerBroad", (data) ->
       console.log "toServerBroad"
       # console.log data
-      socket.broadcast.emit "toClient",
+      socket.broadcast.emit "toClient"
         # value: data.value,
         # device: data.device
       return

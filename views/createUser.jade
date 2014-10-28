@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form(action="/new",method="post")
+    input(type="text",placeholder="User Name",name="username")
+    input(type="mail",placeholder="Mail",name="mail")
+    input(type="password",placeholder="Password",name="password")
+    input(type="password",placeholder="Check Password",name="passwordRetry")
+    input(type="radio",name="gender",value="0",checked="checked")
+    |男
+    input(type="radio",name="gender",value="1")
+    |女
+    input(type="date",name="birthday")
+    input(type="submit",value="create")

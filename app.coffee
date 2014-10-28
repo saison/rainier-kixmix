@@ -5,6 +5,7 @@ logger = require("morgan")
 cookieParser = require("cookie-parser")
 bodyParser = require("body-parser")
 session = require('express-session')
+mysql = require('mysql')
 # routing
 routes = require("./routes/index")
 mypage = require("./routes/mypage")
@@ -29,9 +30,18 @@ app.use session(
 app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
 
+# MySQL
+connection = mysql.createConnection(
+  socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
+  user: "root"
+  password: "root"
+  database: "rainier"
+)
+
 # routing
 app.use "/", routes
 app.use "/mypage", mypage
+
 
 # catch 404 and forward to error handler
 app.use (req, res, next) ->

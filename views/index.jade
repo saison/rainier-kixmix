@@ -3,3 +3,31 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  form(action="/login",method="post")
+    input(type="text",name="name",placeholder="User Name")
+    input(type="password",name="pass",placeholder="Password")
+    input(type="submit",value="Login")
+  #snsLogin
+    a(href="/twitterlogin") Twitter Login
+    br
+    a(href="/facebooklogin") FacebookLogin
+  #kixmixCreate
+    a(href="/new") Create Account
+
+  table
+    tr
+      th id
+      th name
+      th pass
+      th mail
+      th gender
+      th birthday
+    - each user in users
+      tr
+        td user.id
+        td user.username
+        td user.password
+        td user.mail
+        td user.gender
+        td user.birthday
