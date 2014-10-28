@@ -5,11 +5,13 @@
 | Language | Version     |
 | :------------- | :------------- |
 | Node.js       | v0.11.14       |
+| Socket.io | 1.1.0 |
 | Express | 4.9.0 |
+| jade | 1.6.0 |
 | CoffeeScript | 1.8.0 |
 | Sass | 3.4.6 |
 | Compass | 1.0.1 |
-| mongoose(MongoDB) | 3.8.18 |
+| MongoDB | 2.6.5 |
 
 ### Get Start
 
