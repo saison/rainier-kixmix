@@ -11,7 +11,7 @@
 | CoffeeScript | 1.8.0 |
 | Sass | 3.4.6 |
 | Compass | 1.0.1 |
-| MongoDB | 2.6.5 |
+| MySQL | 5.5.34 |
 
 ### Get Start
 
