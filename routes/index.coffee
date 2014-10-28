@@ -1,14 +1,22 @@
-express = require("express")
+express = require "express"
+mysqlLib = require './model/mysqlLib'
 router = express.Router()
+
 
 # GET home page.
 router.get "/", (req, res) ->
+  mysqlLib.getConnection (err, mclient) ->
+    mclient.query "select * from users", (err, rows) ->
+      res.render "index",
+        title: "KIX MIX"
+        users: rows
+      return
 
-  connection.query "select * from users", (err, rows) ->
-    res.render "index",
-      title: "KIX MIX"
-      users: rows
-    return
+  # connection.query "select * from users", (err, rows) ->
+  #   res.render "index",
+  #     title: "KIX MIX"
+  #     users: rows
+  #   return
 
 # POST login
 router.post "/login", (req, res) ->
@@ -37,6 +45,11 @@ router.get "/new", (req,res) ->
 
 # GET New KixMix account
 router.post "/new", (req, res) ->
+  # Validation
+  req.assert("username", "ユーザーネームを登録してください").notEmpty()
+  errors = req.validationErrors()
+  console.log errors
+
   # PostData
   username      = req.param("username")
   mail          = req.param("mail")

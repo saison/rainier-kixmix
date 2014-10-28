@@ -18,7 +18,11 @@
   },
   "devDependencies": {
     "express-session": "^1.9.1",
+    "express-validator": "^2.6.0",
     "mysql": "^2.5.2",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
+    "passport-twitter": "^1.0.2",
     "socket.io": "^1.1.0"
   }
 }
