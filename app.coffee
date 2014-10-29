@@ -5,6 +5,9 @@ logger = require "morgan"
 cookieParser = require "cookie-parser"
 bodyParser = require "body-parser"
 session = require 'express-session'
+methodOverride = require 'method-override'
+multer  = require 'multer'
+
 # routing
 routes = require "./routes/index"
 mypage = require "./routes/mypage"
@@ -28,8 +31,6 @@ app.use session(
 )
 app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
-
-# routing
 app.use "/", routes
 app.use "/mypage", mypage
 
