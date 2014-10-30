@@ -5,11 +5,11 @@ block content
   p Welcome to #{title}
 
   form(action="/login",method="post")
-    input(type="text",name="name",placeholder="User Name")
-    input(type="password",name="pass",placeholder="Password")
+    input(type="text",name="user_id",placeholder="User ID")
+    input(type="password",name="password",placeholder="Password")
     input(type="submit",value="Login")
   #snsLogin
-    a(href="/twitterlogin") Twitter Login
+    a(href="/auth/twitter") Twitter Login
     br
     a(href="/facebooklogin") FacebookLogin
   #kixmixCreate

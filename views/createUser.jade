@@ -2,6 +2,7 @@ extends layout
 
 block content
   form(action="/new",method="post")
+    input(type="text",placeholder="User ID",name="user_id")
     input(type="text",placeholder="User Name",name="username")
     input(type="mail",placeholder="Mail",name="mail")
     input(type="password",placeholder="Password",name="password")

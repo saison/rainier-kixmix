@@ -6,11 +6,36 @@ cookieParser = require "cookie-parser"
 bodyParser = require "body-parser"
 session = require 'express-session'
 methodOverride = require 'method-override'
+# passport = require 'passport'
+# TwitterStrategy = require('passport-twitter').Strategy
 multer  = require 'multer'
 
 # routing
 routes = require "./routes/index"
 mypage = require "./routes/mypage"
+
+
+# # Twitter
+# # Passport sessionのセットアップ
+# passport.serializeUser (user, done) ->
+#   # done null, user
+#   return
+#
+# passport.deserializeUser (obj, done) ->
+#   # done null, obj
+#   return
+#
+# # POST Twitter login
+# TWITTER_CONSUMER_KEY = "9nnVQkAjiic5vh7jOI8qctzHa"
+# TWITTER_CONSUMER_SECRET = "gcQs7rzqZ7YgN7NYTvR0DQGaSEDOW9GvKLxjBodESEZwDvj3Xc"
+# #twitter
+# passport.use new TwitterStrategy(
+#   consumerKey: TWITTER_CONSUMER_KEY
+#   consumerSecret: TWITTER_CONSUMER_SECRET
+#   callbackURL: "http://localhost:3000/auth/twitter/callback"
+# , (token, tokenSecret, profile, done) ->
+#   console.log token, tokenSecret, profile, done
+# )
 
 app = express()
 
@@ -25,15 +50,18 @@ app.use bodyParser.json()
 app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 app.use session(
-  secret: process.env.SESSION_SECRET or "session secret"
-  resave: false
-  saveUninitialized: false
+  secret: "keyboard cat"
+  resave: true
+  saveUninitialized: true
 )
+# app.use passport.initialize()
+# app.use passport.session()
+# app.use passport.authenticate()
+# app.use TwitterStrategy
 app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
 app.use "/mypage", mypage
-
 
 
 # catch 404 and forward to error handler

@@ -1,4 +1,37 @@
 extends ../layout
 
 block content
-  h2 Hi! #{username}
+  h2 Hi! #{user.username}
+
+  table
+    tr
+      th id
+      th name
+      th pass
+      th mail
+      th gender
+      th birthday
+    - each row in rows
+      tr
+        td #{row.user_id}
+        td #{row.username}
+        td #{row.password}
+        td #{row.mail}
+        td #{row.gender}
+        td #{row.birthday}
+  table
+    tr
+      th live_id
+      th title
+      th cast
+      th date
+      th address
+      th place
+    - each live in lives
+      tr
+        td #{live.live_id}
+        td #{live.title}
+        td #{live.cast}
+        td #{live.date}
+        td #{live.address}
+        td #{live.place}
