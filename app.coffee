@@ -13,6 +13,7 @@ multer  = require 'multer'
 # routing
 routes = require "./routes/index"
 mypage = require "./routes/mypage"
+live   = require "./routes/lives"
 
 
 # # Twitter
@@ -62,6 +63,7 @@ app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
 app.use "/mypage", mypage
+app.use "/live", live
 
 
 # catch 404 and forward to error handler

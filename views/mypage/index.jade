@@ -35,3 +35,5 @@ block content
         td #{live.date}
         td #{live.address}
         td #{live.place}
+  - each live in lives
+    a(href="/live/#{live.live_id}") #{live.title}

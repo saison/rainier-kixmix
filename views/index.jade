@@ -5,8 +5,8 @@ block content
   p Welcome to #{title}
 
   form(action="/login",method="post")
-    input(type="text",name="user_id",placeholder="User ID")
-    input(type="password",name="password",placeholder="Password")
+    input(type="text",name="user_id",placeholder="User ID",value="saison")
+    input(type="password",name="password",placeholder="Password",value="12345678")
     input(type="submit",value="Login")
   #snsLogin
     a(href="/auth/twitter") Twitter Login
