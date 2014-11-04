@@ -35,16 +35,16 @@ $ ->
     bgColor = $("#wrapper").data("color")
     $("#data11 span.color").text(bgColor)
 
-    # # Flash Function
-    # if Math.abs(xg) >= 8 or Math.abs(yg) <= 5
-    #   $("#data12 span.flash").text("start")
-    #   $("#wrapper").fadeOut 100, ->
-    #     $(this).fadeIn 100
-    #     return
-    #   return
-    # else
-    #   $("#data12 span.flash").text("end")
-    #   $("#wrapper").stop().fadeIn 100
+    # Flash Function
+    if Math.abs(xg) >= 8 or Math.abs(yg) <= 5
+      $("#data12 span.flash").text("start")
+      $("#wrapper").fadeOut 100, ->
+        $(this).fadeIn 100
+        return
+      return
+    else
+      $("#data12 span.flash").text("end")
+      $("#wrapper").stop().fadeIn 100
 
     return
 
@@ -56,7 +56,7 @@ $ ->
   $(@).gShake ->
     count++
     bgColor count
-    sendBroadcast()
+    # sendBroadcast()
 
   # bgFlash
   bgColor = (value) ->
@@ -98,41 +98,42 @@ $ ->
   else
     $("#data15 span.location").text "false location"
 
-  # # node socket.io
-  # s = io.connect 'http://192.168.100.100:3333'
-  #
-  # s.on "connect", -> # 接続時
-  #   $("#data13 span.socketLog").text "socket.io Connect"
-  #
-  # s.on "disconnect", (client) -> # 切断時
-  #   $("#data13 span.socketLog").text "socket.io Disconnect"
-  #
-  # s.on "toClient", (data) ->
-  #   $("#data13 span.socketLog").text "socket.io toClient"
-  #   $("#data14 span.toServer").text data.value + "/" + data.device
-  #   count = count + data.value
-  #   bgColor count
-  #   return
-  #
-  # s.on "toAll", (data) ->
-  #   $("#data13 span.socketLog").text "socket.io toAll"
-  #   $("#data14 span.toServer").text data.value
-  #   return
-  #
-  # sendBroadcast = ->
-  #   $ ->
-  #     $("#data13 span.socketLog").text "Broadcast call"
-  #   s.emit "toServerBroad", #サーバへ送信
-  #     value: 1,
-  #     device: device,
-  #     lat: lat,
-  #     lon: lon
-  #   return
-  #
-  # # socket function
-  # $("a#voiceTest").click ->
-  #   $("#data13 span.socketLog").text "Button Push"
-  #   sendBroadcast();
+  # node socket.io
+  domain = location.hostname
+  s = io.connect 'http://' + domain + ':3000'
+
+  s.on "connect", -> # 接続時
+    $("#data13 span.socketLog").text "socket.io Connect"
+
+  s.on "disconnect", (client) -> # 切断時
+    $("#data13 span.socketLog").text "socket.io Disconnect"
+
+  s.on "toClient", (data) ->
+    $("#data13 span.socketLog").text "socket.io toClient"
+    $("#data14 span.toServer").text data.value + "/" + data.device
+    count = count + data.value
+    bgColor count
+    return
+
+  s.on "toAll", (data) ->
+    $("#data13 span.socketLog").text "socket.io toAll"
+    $("#data14 span.toServer").text data.value
+    return
+
+  sendBroadcast = ->
+    $ ->
+      $("#data13 span.socketLog").text "Broadcast call"
+    s.emit "toServerBroad", #サーバへ送信
+      value: 1,
+      device: device,
+      lat: lat,
+      lon: lon
+    return
+
+  # socket function
+  $("a#voiceTest").click ->
+    $("#data13 span.socketLog").text "Button Push"
+    sendBroadcast();
 
   # # Voice Audio
   # $("#voiceTest").click ->
