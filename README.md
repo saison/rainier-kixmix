@@ -12,6 +12,7 @@
 | Sass | 3.4.6 |
 | Compass | 1.0.1 |
 | MySQL | 5.5.34 |
+| gulp | 3.8.8 |
 
 ### Get Start
 
