@@ -31,9 +31,6 @@ $ ->
     $("#data8 span.num").text(y.toFixed(3))
     $("#data9 span.num").text(x.toFixed(3))
 
-    $("p#point").css
-      top: "+=" + yg * -2 + "px"
-      left: "+=" + xg * 2 + "px"
 
     bgColor = $("#wrapper").data("color")
     $("#data11 span.color").text(bgColor)
@@ -101,41 +98,41 @@ $ ->
   else
     $("#data15 span.location").text "false location"
 
-  # node socket.io
-  s = io.connect 'http://192.168.100.100:3333'
-
-  s.on "connect", -> # 接続時
-    $("#data13 span.socketLog").text "socket.io Connect"
-
-  s.on "disconnect", (client) -> # 切断時
-    $("#data13 span.socketLog").text "socket.io Disconnect"
-
-  s.on "toClient", (data) ->
-    $("#data13 span.socketLog").text "socket.io toClient"
-    $("#data14 span.toServer").text data.value + "/" + data.device
-    count = count + data.value
-    bgColor count
-    return
-
-  s.on "toAll", (data) ->
-    $("#data13 span.socketLog").text "socket.io toAll"
-    $("#data14 span.toServer").text data.value
-    return
-
-  sendBroadcast = ->
-    $ ->
-      $("#data13 span.socketLog").text "Broadcast call"
-    s.emit "toServerBroad", #サーバへ送信
-      value: 1,
-      device: device,
-      lat: lat,
-      lon: lon
-    return
-
-  # socket function
-  $("a#voiceTest").click ->
-    $("#data13 span.socketLog").text "Button Push"
-    sendBroadcast();
+  # # node socket.io
+  # s = io.connect 'http://192.168.100.100:3333'
+  #
+  # s.on "connect", -> # 接続時
+  #   $("#data13 span.socketLog").text "socket.io Connect"
+  #
+  # s.on "disconnect", (client) -> # 切断時
+  #   $("#data13 span.socketLog").text "socket.io Disconnect"
+  #
+  # s.on "toClient", (data) ->
+  #   $("#data13 span.socketLog").text "socket.io toClient"
+  #   $("#data14 span.toServer").text data.value + "/" + data.device
+  #   count = count + data.value
+  #   bgColor count
+  #   return
+  #
+  # s.on "toAll", (data) ->
+  #   $("#data13 span.socketLog").text "socket.io toAll"
+  #   $("#data14 span.toServer").text data.value
+  #   return
+  #
+  # sendBroadcast = ->
+  #   $ ->
+  #     $("#data13 span.socketLog").text "Broadcast call"
+  #   s.emit "toServerBroad", #サーバへ送信
+  #     value: 1,
+  #     device: device,
+  #     lat: lat,
+  #     lon: lon
+  #   return
+  #
+  # # socket function
+  # $("a#voiceTest").click ->
+  #   $("#data13 span.socketLog").text "Button Push"
+  #   sendBroadcast();
 
   # # Voice Audio
   # $("#voiceTest").click ->
