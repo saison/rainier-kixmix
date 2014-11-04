@@ -1,10 +1,26 @@
 @import "compass/css3";
 
+$mainColor: rgba(30,30,30,0.9);
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
 body {
-  padding: 90px;
+  width: 100%;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+header{
+	background: $mainColor;
+}
+
+h1{
+	color: 
+	text-align: center;
 }
