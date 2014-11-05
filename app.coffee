@@ -6,8 +6,6 @@ cookieParser = require "cookie-parser"
 bodyParser = require "body-parser"
 session = require 'express-session'
 methodOverride = require 'method-override'
-# passport = require 'passport'
-# TwitterStrategy = require('passport-twitter').Strategy
 multer  = require 'multer'
 
 # routing
@@ -15,28 +13,6 @@ routes = require "./routes/index"
 mypage = require "./routes/mypage"
 live   = require "./routes/lives"
 
-
-# # Twitter
-# # Passport sessionのセットアップ
-# passport.serializeUser (user, done) ->
-#   # done null, user
-#   return
-#
-# passport.deserializeUser (obj, done) ->
-#   # done null, obj
-#   return
-#
-# # POST Twitter login
-# TWITTER_CONSUMER_KEY = "9nnVQkAjiic5vh7jOI8qctzHa"
-# TWITTER_CONSUMER_SECRET = "gcQs7rzqZ7YgN7NYTvR0DQGaSEDOW9GvKLxjBodESEZwDvj3Xc"
-# #twitter
-# passport.use new TwitterStrategy(
-#   consumerKey: TWITTER_CONSUMER_KEY
-#   consumerSecret: TWITTER_CONSUMER_SECRET
-#   callbackURL: "http://localhost:3000/auth/twitter/callback"
-# , (token, tokenSecret, profile, done) ->
-#   console.log token, tokenSecret, profile, done
-# )
 
 app = express()
 
