@@ -1,11 +1,10 @@
 @import "compass/css3";
+@import "compass/reset";
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans);
 
 $mainColor: rgba(30,30,30,0.9);
-
-*{
-	margin: 0;
-	padding: 0;
-}
+$white: #ffffff;
+$acColor: #888888;
 
 body {
   width: 100%;
@@ -17,10 +16,26 @@ a {
 }
 
 header{
+	width: 100%;
 	background: $mainColor;
+	h1{
+		padding: 4.7% 0;
+		color: $white;
+		text-align: center;
+		font: 14px "Gota light", Helvetica, Arial, sans-serif;
+	}
 }
 
-h1{
-	color: 
+p{
+	color: $acColor;
 	text-align: center;
+	font: 50px 'Noto Sans', sans-serif;
+}
+
+input[type=text]{
+	margin: auto;
+	padding: 5px;
+	border: none;
+	border-bottom: 1px solid $acColor;
+	width: 200px;
 }
