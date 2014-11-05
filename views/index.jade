@@ -9,11 +9,17 @@ block content
   form(action="/login",method="post")
     input(type="text",name="user_id",placeholder="User ID",value="saison")
     input(type="password",name="password",placeholder="Password",value="12345678")
-    input(type="submit",value="Login")
+    input(type="submit",value="Sign in")
   #snsLogin
-    a(href="/auth/twitter") Twitter Login
+    a#fb(href="/facebooklogin")
+      i.fa.fa-facebook.fa-2x
+      | Sign in with Facebook
     br
-    a(href="/facebooklogin") FacebookLogin
+    a#tw(href="/auth/twitter") 
+      i.fa.fa-twitter.fa-2x
+      | Sign in with Twitter
+
+
   #kixmixCreate
     a(href="/new") Create Account
 
