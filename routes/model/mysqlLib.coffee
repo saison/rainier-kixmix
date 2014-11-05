@@ -2,7 +2,7 @@ mysql = require("mysql")
 pool = mysql.createPool(
   host: "localhost"
   user: "root"
-  password: "root"
+  password: ""
   database: "rainier"
 )
 
