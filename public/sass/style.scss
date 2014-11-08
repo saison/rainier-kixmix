@@ -5,25 +5,39 @@
 $mainColor: rgba(30,30,30,0.9);
 $white: #ffffff;
 $acColor: #888888;
-$BTcolor: #7fff00;
+$BTcolor: #33cc99;
+$fontS: 13px;
+$fontM: 16px;
+$fontL: 18px;
 
 body {
-  width: 100%;
   font: 14px 'Noto Sans', sans-serif;
+  background: #eee;
 }
 
 a {
   color: #00B7FF;
 }
 
+#warpper{
+	width: 100%;
+	min-width: 390px;
+}
+
+
 header{
 	width: 100%;
+	height: 45px;
 	background: $mainColor;
 	h1{
-		padding: 4.7% 0;
-		color: $white;
-		text-align: center;
-		font: 14px "Gota light", Helvetica, Arial, sans-serif;
+		width: 100px;
+		height: 45px;
+		margin: auto;
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		background: url(../images/logo.png) no-repeat 0;
+		background-size: 100%;
 	}
 }
 
@@ -31,39 +45,48 @@ p{
 	color: $acColor;
 	text-align: center;
 	font-size: 50px;
+	margin: 2% 0;
 }
 
 form{
 	width: 64%;
 	margin: auto;
-	padding: 5%;
+	input[type="text"]{
+		width: 100%;
+		margin: 5% auto;
+		padding: 5px;
+		font-size: $fontL;
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid $acColor;
+		@include border-radius(0px);
+	}
+
+	input[type="password"]{
+		width: 100%;
+		margin: 5% auto;
+		padding: 5px;
+		font-size: $fontL;
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid $acColor;
+		@include border-radius(0px);
+	}
+
+	input[type="submit"]{
+		width: 100%;
+		margin: 10% auto;
+		padding: 5%;
+		font-size: 16px;
+		color: $white;
+		background: $BTcolor;
+		border: none;
+		@include border-radius(0px);
+		@include appearance(none);
+	}
+
 }
 
-input[type=text]{
-	width: 230px;
-	margin: 5% auto;
-	padding: 5px;
-	border: none;
-	border-bottom: 1px solid $acColor;
-}
-
-input[type=password]{
-	width: 230px;
-	margin: 5% auto;
-	padding: 5px;
-	border: none;
-	border-bottom: 1px solid $acColor;
-}
-
-input[type=submit]{
-	width: 240px;
-	margin: 10% auto;
-	padding: 5%;
-	font-size: 16px;
-	color: $white;
-	background: $BTcolor;
-	border: none;
-}
 
 #snsLogin{
 	width: 64%;
@@ -71,14 +94,12 @@ input[type=submit]{
 	padding: 5%;
 	#fb{
 		display: block;
-		padding: 0px 10px 1px 0px;
 		color: $white;
-		text-align: right;
 		text-decoration: none;
 		background: #297fb8;
 		i{
 			margin-right: 18%;
-			padding: 4% 3% 2% 0%;
+			padding: 4.5% 3% 2.6% 10%;
 			border-right: 1px solid #19659f;
 		}
 	}
