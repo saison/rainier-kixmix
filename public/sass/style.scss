@@ -83,6 +83,37 @@ form{
 		@include border-radius(0px);
 		@include appearance(none);
 	}
+	input[type="radio"]{
+		display: none;
+		padding: 5px;
+	}
+	label{
+		display: block;
+		float: left;
+		cursor: pointer;
+		width: 60px;
+		margin: 0;
+		padding: 10px;
+		background: $white;
+		color: #3c3c3c;
+		text-align: center;
+		border: 1px solid $mainColor;
+		@include box-sizing(content-box);
+	}
+	label:first-of-type{
+		padding: 10px 28px;
+	}
+	label:last-of-type{
+		padding: 10px 28px;
+	}
+	input[type="radio"]:checked + .switch-on {
+		background-color: $mainColor;
+		color: $white;
+	}
+	input[type="radio"]:checked + .switch-off {
+		background-color: $mainColor;
+		color: $white;
+	}
 
 }
 
