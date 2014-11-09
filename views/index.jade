@@ -1,42 +1,48 @@
 extends layout
 
 block content
-  header
-    h1= title
+  #warpper
+    header
+      h1= title
 
-  p Sing in
+    p Sing in
 
-  form(action="/login",method="post")
-    input(type="text",name="user_id",placeholder="User ID",value="saison")
-    input(type="password",name="password",placeholder="Password",value="12345678")
-    input(type="submit",value="Sign in")
-  #snsLogin
-    a#fb(href="/facebooklogin")
-      i.fa.fa-facebook.fa-2x
-      | Sign in with Facebook
-    br
-    a#tw(href="/auth/twitter") 
-      i.fa.fa-twitter.fa-2x
-      | Sign in with Twitter
+    form(action="/login",method="post")
+      input(type="text",name="user_id",placeholder="User ID",value="saison")
+      br
+      input(type="password",name="password",placeholder="Password",value="12345678")
+      br
+      input(type="submit",value="Sign in")
+    #snsLogin
+      a#fb(href="/facebooklogin")
+        i.fa.fa-facebook.fa-2x
+        span
+          | Sign in with Facebook
+      br
+      a#tw(href="/auth/twitter") 
+        i.fa.fa-twitter.fa-2x
+        span
+          | Sign in with Twitter
 
 
-  #kixmixCreate
-    a(href="/new") Create Account
+    #kixmixCreate
+      a(href="/new") Create Account
 
-  table
-    tr
-      th id
-      th name
-      th pass
-      th mail
-      th gender
-      th birthday
-    - each user in users
-      tr
-        td #{user.user_id}
-        td #{user.username}
-        td #{user.password}
-        td #{user.mail}
-        td #{user.gender}
-        td #{user.birthday}
-  
+    div(style='display:none')
+      table
+        tr
+          th id
+          th name
+          th pass
+          th mail
+          th gender
+          th birthday
+        - each user in users
+          tr
+            td #{user.user_id}
+            td #{user.username}
+            td #{user.password}
+            td #{user.mail}
+            td #{user.gender}
+            td #{user.birthday}
+    
