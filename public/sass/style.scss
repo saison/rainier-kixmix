@@ -8,7 +8,7 @@ $acColor: #888888;
 $BTcolor: #33cc99;
 $fontS: 12px;
 $fontM: 16px;
-$fontL: 18px;
+$fontL: 20px;
 
 body {
   font: 14px 'Noto Sans', sans-serif;
@@ -51,7 +51,18 @@ form{
 	width: 64%;
 	margin: auto;
 	input[type="text"]{
-		width: 100%;
+		width: 96%;
+		margin: 5% auto;
+		padding: 5px;
+		font-size: $fontL;
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid $acColor;
+		@include border-radius(0px);
+	}
+
+	input[type="mail"]{
+		width: 96%;
 		margin: 5% auto;
 		padding: 5px;
 		font-size: $fontL;
@@ -62,7 +73,7 @@ form{
 	}
 
 	input[type="password"]{
-		width: 100%;
+		width: 96%;
 		margin: 5% auto;
 		padding: 5px;
 		font-size: $fontL;
@@ -71,6 +82,18 @@ form{
 		border-bottom: 1px solid $acColor;
 		@include border-radius(0px);
 	}
+
+	input[type="date"]{
+		width: 96%;
+		margin: 4% auto 5%;
+		padding: 5px;
+		font-size: $fontL;
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid $acColor;
+		@include border-radius(0px);
+	}
+
 
 	input[type="submit"]{
 		width: 100%;
@@ -83,36 +106,35 @@ form{
 		@include border-radius(0px);
 		@include appearance(none);
 	}
-	input[type="radio"]{
-		display: none;
-		padding: 5px;
-	}
-	label{
-		display: block;
-		float: left;
-		cursor: pointer;
-		width: 60px;
-		margin: 0;
-		padding: 10px;
-		background: $white;
-		color: #3c3c3c;
-		text-align: center;
-		border: 1px solid $mainColor;
-		@include box-sizing(content-box);
-	}
-	label:first-of-type{
-		padding: 10px 28px;
-	}
-	label:last-of-type{
-		padding: 10px 28px;
-	}
-	input[type="radio"]:checked + .switch-on {
-		background-color: $mainColor;
-		color: $white;
-	}
-	input[type="radio"]:checked + .switch-off {
-		background-color: $mainColor;
-		color: $white;
+
+	#gender{
+		margin-top: 8%;
+		font-size: $fontL;
+		input[type="radio"]{
+			display: none;
+			width: 0;
+			height: 0;
+			margin: 0;
+			padding: 0;
+		}
+		label{
+			display: inline-block;
+			width: 50%;
+			padding: 4%;
+			background: $white;
+			color: #3c3c3c;
+			text-align: center;
+			border: 1px solid $mainColor;
+			@include box-sizing(border-box);
+		}
+		input[type="radio"]:checked + .switch-on {
+			background-color: $mainColor;
+			color: $white;
+		}
+		input[type="radio"]:checked + .switch-off {
+			background-color: $mainColor;
+			color: $white;
+		}
 	}
 
 }
