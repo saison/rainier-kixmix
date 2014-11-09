@@ -3,13 +3,20 @@ extends layout
 block content
   form(action="/new",method="post")
     input(type="text",placeholder="User ID",name="user_id")
+    br
     input(type="text",placeholder="User Name",name="username")
+    br
     input(type="mail",placeholder="Mail",name="mail")
+    br
     input(type="password",placeholder="Password",name="password")
+    br
     input(type="password",placeholder="Check Password",name="passwordRetry")
-    input(type="radio",name="gender",value="0",checked="checked")
-    |男
-    input(type="radio",name="gender",value="1")
-    |女
+    br
+    input#on(type="radio",name="gender",value="0",checked="checked")
+    label.switch-on(for='on') male
+    input#off(type="radio",name="gender",value="1")
+    label.switch-off(for='off') female
+    br
     input(type="date",name="birthday")
+    br
     input(type="submit",value="create")
