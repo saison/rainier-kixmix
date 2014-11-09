@@ -2,7 +2,7 @@ app = require("../../app")
 http = require("http").Server(app)
 io = require("socket.io")(http)
 
-socketio = ->
+skio = ->
 
   # Socket.IO
   http.listen app.get("port"), ->
