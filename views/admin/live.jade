@@ -1,0 +1,23 @@
+extends layout_admin_live
+
+block content
+  #liveBg
+    #movieBox
+      video#liveVideo(onended='this.play();', autoplay='autoplay', loop='loop')
+        source(src='/media/hal.mp4', type='video/mp4')
+    #kashi High And Loud
+  #control
+    input#play(type='button', value='再生')
+    input#pause(type='button', value='一時停止')
+    input#upV(type='button', value='↑')
+    input#downV(type='button', value='↓')
+  
+  #nowTime 現在（秒）：
+    span#ichi 0
+  
+  #data SocketLog: 
+    span.socketLog
+    
+  #toserver toServer: 
+    span.toServer
+    

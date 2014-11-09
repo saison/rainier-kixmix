@@ -1,0 +1,24 @@
+extends layout_admin
+
+block content
+  h2 Hi! #{user.username}
+
+  table.table
+    tr
+      th live_id
+      th title
+      th cast
+      th date
+      th address
+      th place
+    - each live in lives
+      tr
+        td #{live.live_id}
+        td
+          a(href="/admin/live/#{live.live_id}") #{live.title}
+        - var time = live.date.toDateString()
+        td #{live.cast}
+        td #{time}
+        td #{live.address}
+        td #{live.place}
+  a(href="mypage/joinLives") addLive
