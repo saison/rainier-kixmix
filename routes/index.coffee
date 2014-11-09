@@ -112,7 +112,8 @@ router.post "/facebooklogin", (req, res) ->
 
 # GET New KixMix account
 router.get "/new", (req,res) ->
-  res.render "createUser"
+  res.render "createUser",
+    title: "KIX MIX"
   return
 
 # GET New KixMix account
