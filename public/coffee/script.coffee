@@ -100,6 +100,7 @@ $ ->
 
   # node socket.io
   domain = location.hostname
+
   s = io.connect 'http://' + domain + ':3000'
 
   s.on "connect", -> # 接続時
@@ -125,34 +126,10 @@ $ ->
       $("#data13 span.socketLog").text "Broadcast call"
     s.emit "toServerBroad", #サーバへ送信
       value: 1,
-      device: device,
-      lat: lat,
-      lon: lon
+      device: device
     return
 
   # socket function
   $("a#voiceTest").click ->
     $("#data13 span.socketLog").text "Button Push"
     sendBroadcast();
-
-  # # Voice Audio
-  # $("#voiceTest").click ->
-  #   navigator.getUserMedia = (navigator.getUserMedia or navigator.webkitGetUserMedia or navigator.mozGetUserMedia or navigator.msGetUserMedia)
-  #   if navigator.getUserMedia
-  #     navigator.getUserMedia
-  #       video: true
-  #       audio: true
-  #
-  #     , ((localMediaStream) ->
-  #       # successCallback
-  #       video = document.querySelector("video")
-  #       video.src = window.URL.createObjectURL(localMediaStream)
-  #       return
-  #
-  #     ), (err) ->
-  #       # errorCallback
-  #       alert "The following error occured: " + err
-  #       return
-  #
-  #   else
-  #     alert "getUserMedia not supported"
