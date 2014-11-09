@@ -32,4 +32,4 @@ skio = ->
 
 
 
-module.exports = socketio
+module.exports = skio
