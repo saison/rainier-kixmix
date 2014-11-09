@@ -20,4 +20,36 @@ router.get "/", (req, res) ->
           lives: joinLivesRows
   return
 
+router.get "/joinLives", (req, res) ->
+  mysqlLib.getConnection (err, mclient) ->
+
+    noJoinLivesSQL = "SELECT * FROM lives WHERE live_id NOT IN (SELECT live_id FROM live_users WHERE user_id = ?)"
+    sess = req.session.user
+
+    mclient.query noJoinLivesSQL, sess.user_id, (err, noJoinLivesRows) ->
+      if noJoinLivesRows[0] is undefined
+        res.render "mypage/noLives",
+          title: "Kix Mix"
+          user: sess
+          display: "none"
+      else
+        res.render "mypage/joinLives",
+          title: "Kix Mix"
+          user: sess
+          lives: noJoinLivesRows
+
+router.get "/joinLives/:live_id([0-9]+)", (req, res) ->
+
+  mysqlLib.getConnection (err, mclient) ->
+
+    live_id = Number req.params.live_id
+    sess = req.session.user
+    insertData = {user_id: sess.user_id, live_id: live_id}
+    joinLivesSQL = "INSERT INTO live_users SET ?"
+
+    mclient.query joinLivesSQL, insertData, (err, result) ->
+      res.redirect "/mypage",
+        users: sess
+        title: "Kix Mix"
+
 module.exports = router
