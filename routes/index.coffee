@@ -57,9 +57,25 @@ TWITTER_CONSUMER_SECRET = "gcQs7rzqZ7YgN7NYTvR0DQGaSEDOW9GvKLxjBodESEZwDvj3Xc"
 passport.use new TwitterStrategy(
   consumerKey: TWITTER_CONSUMER_KEY
   consumerSecret: TWITTER_CONSUMER_SECRET
-  callbackURL: "http://rainier.saison-lab.com:3000/auth/twitter/callback/"
+  callbackURL: "http://127.0.0.1:3000/auth/twitter/callback/"
 , (token, tokenSecret, profile, done) ->
+
   console.log token, tokenSecret, profile, done
+
+  userLoginSql = "select * from users WHERE tw_customer = ? AND tw_secret = ?"
+  userLoginData = [token, tokenSecret]
+
+  mysqlLib.getConnection (err, mclient) ->
+    mclient.query userLoginSql, userLoginData, (err, rows) ->
+      if err == null
+        req.session.user =
+          user_id: user_id
+          username: rows[0].username
+        res.redirect "mypage"
+      else
+        userInsertData = {user_id: profile.username, username: profile.displayName, birthday: birthday, signup: signup}
+        userInsertSql  = "INSERT INTO users SET ?"
+
 )
 
 
@@ -68,7 +84,7 @@ router.get "/auth/twitter", passport.authenticate('twitter')
 
 # Twitterからのcallback
 router.get "/auth/twitter/callback", passport.authenticate("twitter",
-  successRedirect: "/mypage"
+  successRedirect: "new"
   failureRedirect: "/"
 )
 
@@ -108,7 +124,7 @@ router.post "/new", (req, res) ->
   if req.param("user_id") and req.param("username") and req.param("mail") and req.param("password") and req.param("passwordRetry") and req.param("gender") and req.param("birthday")
     if req.param("password") is req.param("passwordRetry")
       # PostData
-      user_id      = req.param("user_id")
+      user_id       = req.param("user_id")
       username      = req.param("username")
       mail          = req.param("mail")
       password      = req.param("password")
