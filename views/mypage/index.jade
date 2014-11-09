@@ -31,8 +31,9 @@ block content
       tr
         td #{live.live_id}
         td #{live.title}
+        - var time = live.date.toDateString()
         td #{live.cast}
-        td #{live.date}
+        td #{time}
         td #{live.address}
         td #{live.place}
   - each live in lives

@@ -12,6 +12,7 @@ multer  = require 'multer'
 routes = require "./routes/index"
 mypage = require "./routes/mypage"
 live   = require "./routes/lives"
+admin  = require "./routes/admin"
 
 
 app = express()
@@ -31,15 +32,12 @@ app.use session(
   resave: true
   saveUninitialized: true
 )
-# app.use passport.initialize()
-# app.use passport.session()
-# app.use passport.authenticate()
-# app.use TwitterStrategy
 app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
 app.use "/mypage", mypage
 app.use "/live", live
+app.use "/admin", admin
 
 
 # catch 404 and forward to error handler

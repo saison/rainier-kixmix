@@ -23,22 +23,4 @@ block content
 
     #kixmixCreate
       a(href="/new") Create Account
-
-    div(style='display:none')
-      table
-        tr
-          th id
-          th name
-          th pass
-          th mail
-          th gender
-          th birthday
-        - each user in users
-          tr
-            td #{user.user_id}
-            td #{user.username}
-            td #{user.password}
-            td #{user.mail}
-            td #{user.gender}
-            td #{user.birthday}
     

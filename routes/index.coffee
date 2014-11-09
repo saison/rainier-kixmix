@@ -7,12 +7,9 @@ router = express.Router()
 
 # GET home page.
 router.get "/", (req, res) ->
-  mysqlLib.getConnection (err, mclient) ->
-    mclient.query "select * from users", (err, rows) ->
-      res.render "index",
-        title: "KIX MIX"
-        users: rows
-      return
+  res.render "index",
+    title: "KIX MIX"
+  return
 
 
 # POST login

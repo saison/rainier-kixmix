@@ -1,0 +1,10 @@
+extend layout_admin
+
+block content
+  h2 Admin Login
+  
+  #adminLogin
+    form(action="/admin/login",method="post")
+      input(type="text",name="user_id")
+      input(type="password",name="password")
+      input(type="submit",value="Admin Login")
