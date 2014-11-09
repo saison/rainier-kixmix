@@ -1,6 +1,8 @@
 extends layout
 
 block content
+  p
+   | Sing up
   form(action="/new",method="post")
     input(type="text",placeholder="User ID",name="user_id")
     br
@@ -12,11 +14,11 @@ block content
     br
     input(type="password",placeholder="Check Password",name="passwordRetry")
     br
-    input#on(type="radio",name="gender",value="0",checked="checked")
-    label.switch-on(for='on') male
-    input#off(type="radio",name="gender",value="1")
-    label.switch-off(for='off') female
+    p#gender
+      input#on(type="radio",name="gender",value="0",checked="checked")
+      label.switch-on(for='on') male
+      input#off(type="radio",name="gender",value="1")
+      label.switch-off(for='off') female
+    input(type="date",name="birthday",value="1990-10-01")
     br
-    input(type="date",name="birthday")
-    br
-    input(type="submit",value="create")
+    input(type="submit",value="Sing up")
