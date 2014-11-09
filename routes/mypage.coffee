@@ -38,7 +38,7 @@ router.get "/joinLives", (req, res) ->
           user: sess
           lives: noJoinLivesRows
 
-router.get "/joinLives/:live_id([0-9]+)", (req, res) ->
+router.get "/joinLives/join/:live_id([0-9]+)", (req, res) ->
 
   mysqlLib.getConnection (err, mclient) ->
 
@@ -48,8 +48,6 @@ router.get "/joinLives/:live_id([0-9]+)", (req, res) ->
     joinLivesSQL = "INSERT INTO live_users SET ?"
 
     mclient.query joinLivesSQL, insertData, (err, result) ->
-      res.redirect "/mypage",
-        users: sess
-        title: "Kix Mix"
+      res.redirect "/mypage"
 
 module.exports = router
