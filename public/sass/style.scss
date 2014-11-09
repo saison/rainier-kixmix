@@ -6,7 +6,7 @@ $mainColor: rgba(30,30,30,0.9);
 $white: #ffffff;
 $acColor: #888888;
 $BTcolor: #33cc99;
-$fontS: 13px;
+$fontS: 12px;
 $fontM: 16px;
 $fontL: 18px;
 
@@ -21,9 +21,8 @@ a {
 
 #warpper{
 	width: 100%;
-	min-width: 390px;
+	min-width: 320px;
 }
-
 
 header{
 	width: 100%;
@@ -45,7 +44,7 @@ p{
 	color: $acColor;
 	text-align: center;
 	font-size: 50px;
-	margin: 2% 0;
+	margin: 5% 0;
 }
 
 form{
@@ -76,7 +75,7 @@ form{
 	input[type="submit"]{
 		width: 100%;
 		margin: 10% auto;
-		padding: 5%;
+		padding: 6.7%;
 		font-size: 16px;
 		color: $white;
 		background: $BTcolor;
@@ -87,20 +86,61 @@ form{
 
 }
 
-
 #snsLogin{
 	width: 64%;
 	margin: auto;
 	padding: 5%;
+	font-size: $fontS;
 	#fb{
 		display: block;
+		padding-bottom: 1px;
 		color: $white;
 		text-decoration: none;
 		background: #297fb8;
 		i{
 			margin-right: 18%;
-			padding: 4.5% 3% 2.6% 10%;
+			padding: 6.5% 7.6% 4.5% 8.5%;
 			border-right: 1px solid #19659f;
+		}
+		span{
+			margin-top: 7%;
+			position: absolute;
+			right: 21%
+		}
+	}
+	#tw{
+		display: block;
+		padding-bottom: 1px;
+		color: $white;
+		text-decoration: none;
+		background: #3598dc;
+		i{
+			margin-right: 18%;
+			padding: 6.5% 5% 4.5% 6.3%;
+			border-right: 1px solid #2484ce;
+		}
+		span{
+			margin-top: 7%;
+			position: absolute;
+			right: 21%
 		}
 	}
 }
+
+#kixmixCreate{
+	width: 64%;
+	margin: auto;
+	padding: 5%;
+	a{
+		display: block;
+		text-align: center;
+	}
+}
+
+
+
+
+
+
+
+
