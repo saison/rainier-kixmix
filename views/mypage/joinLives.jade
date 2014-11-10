@@ -3,24 +3,20 @@ extends ../layout
 block content
   h2 Hi! #{user.username}
   
-  h3 参加できるライブ
-  table
-    tr
-      th live_id
-      th title
-      th cast
-      th date
-      th address
-      th place
+  ul#joinLiveLists
     - each live in lives
-      tr
-        td #{live.live_id}
-        td #{live.title}
-        td #{live.cast}
-        td #{live.date}
-        td #{live.address}
-        td #{live.place}
-  - each live in lives
-    a(href="joinLives/join/#{live.live_id}") #{live.title}
+      li
+        a(href="joinLives/join/#{live.live_id}")
+          .liveImg
+            img(src="/images/live01.jpg", alt="LiveImg")
+          .listBg
+          h3.liveTitle #{live.title}
+          .liveInfo
+            .place
+              span.glyphicon.glyphicon-map-marker
+              h4 #{live.place}
+            .time
+              span.glyphicon.glyphicon-calendar
+              h4 #{live.date}
 
   a(href="/mypage") 戻る
