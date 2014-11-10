@@ -2,26 +2,26 @@
   $(function() {
     var bgColor, count, domain, s;
     count = 0;
-    bgColor = function(value) {
-      var color;
+    $("#toserver .toServer").text(count.toString());
+    bgColor = function(count) {
       $("#data10 span.num").text(count);
-      color = value % 4;
-      if (color === 0) {
-        return $("#liveBg").css({
-          background: "#ff64af"
-        });
-      } else if (color === 1) {
-        return $("#liveBg").css({
-          background: "#40c8fe"
-        });
-      } else if (color === 2) {
-        return $("#liveBg").css({
-          background: "#ff8d41"
-        });
-      } else if (color === 3) {
-        return $("#liveBg").css({
-          background: "#ffffff"
-        });
+      if (count < 10) {
+        $("#heatLevel").addClass("level1");
+      } else if (count < 20) {
+        $("#heatLevel").removeClass("level1");
+        $("#heatLevel").addClass("level2");
+      } else if (count < 30) {
+        $("#heatLevel").removeClass("level2");
+        $("#heatLevel").addClass("level3");
+      } else if (count < 40) {
+        $("#heatLevel").removeClass("level3");
+        $("#heatLevel").addClass("level4");
+      } else if (count < 50) {
+        $("#heatLevel").removeClass("level4");
+        $("#heatLevel").addClass("level5");
+      } else if (count >= 60) {
+        $("#heatLevel").removeClass("level5");
+        $("#heatLevel").addClass("levelMax");
       }
     };
     domain = location.hostname;
@@ -34,9 +34,9 @@
     });
     s.on("toClient", function(data) {
       $("#data .socketLog").text("socket.io toClient");
-      $("#toserver .toServer").text(data.value);
       count = count + data.value;
       bgColor(count);
+      $("#toserver .toServer").text(count.toString());
     });
     return s.on("toAll", function(data) {
       $("#data13 span.socketLog").text("socket.io toAll");
