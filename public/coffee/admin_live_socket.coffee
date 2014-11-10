@@ -1,22 +1,35 @@
 $ ->
   count = 0
 
+  $("#toserver .toServer").text count.toString()
+
   # bgFlash
-  bgColor = (value) ->
+  bgColor = (count) ->
     $("#data10 span.num").text(count)
-    color = value % 4
-    if color == 0
-      $("#liveBg").css
-        background : "#ff64af"
-    else if color == 1
-      $("#liveBg").css
-        background : "#40c8fe"
-    else if color == 2
-      $("#liveBg").css
-        background : "#ff8d41"
-    else if color == 3
-      $("#liveBg").css
-        background : "#ffffff"
+
+    if count < 10
+      $("#heatLevel").addClass "level1"
+      return
+    else if count < 20
+      $("#heatLevel").removeClass "level1"
+      $("#heatLevel").addClass "level2"
+      return
+    else if count < 30
+      $("#heatLevel").removeClass "level2"
+      $("#heatLevel").addClass "level3"
+      return
+    else if count < 40
+      $("#heatLevel").removeClass "level3"
+      $("#heatLevel").addClass "level4"
+      return
+    else if count < 50
+      $("#heatLevel").removeClass "level4"
+      $("#heatLevel").addClass "level5"
+      return
+    else if count >= 60
+      $("#heatLevel").removeClass "level5"
+      $("#heatLevel").addClass "levelMax"
+      return
 
   # node socket.io
   domain = location.hostname
@@ -31,9 +44,9 @@ $ ->
 
   s.on "toClient", (data) ->
     $("#data .socketLog").text "socket.io toClient"
-    $("#toserver .toServer").text data.value
     count = count + data.value
     bgColor count
+    $("#toserver .toServer").text count.toString()
     return
 
   s.on "toAll", (data) ->
