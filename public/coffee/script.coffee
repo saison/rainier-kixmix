@@ -129,7 +129,13 @@ $ ->
       device: device
     return
 
+  sendAll = ->
+    s.emit "toAll", #サーバへ送信
+      value: 1,
+      device: device
+    return
+
   # socket function
   $("a#voiceTest").click ->
     $("#data13 span.socketLog").text "Button Push"
-    sendBroadcast();
+    sendAll();

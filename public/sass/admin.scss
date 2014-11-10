@@ -100,7 +100,8 @@ html,body{
 .levelMax{
   @include background(
     linear-gradient(left top, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 70%, rgba(255, 65, 65, 0.9) 99%),
-    linear-gradient(right top, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 70%, rgba(255, 65, 65, 0.9) 99%)
+    linear-gradient(right top, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 70%, rgba(255, 65, 65, 0.9) 99%),
+    linear-gradient(top, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0) 70%, rgba(255, 65, 65, 0.9) 99%)
   );
 }
 
