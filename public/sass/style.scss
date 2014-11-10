@@ -22,7 +22,7 @@ a {
 #warpper{
 	width: 100%;
 	min-width: 320px;
-	margin-bottom: 19%;
+	margin-top: 65px;
 }
 
 header{
@@ -44,142 +44,144 @@ header{
 	}
 }
 
-h2,p{
-	color: $acColor;
-	text-align: center;
-	font-size: 50px;
-	margin: 5% 0;
-}
-
-form{
-	width: 64%;
+article{
+	max-width: 300px;
+	min-width: 300px;
 	margin: auto;
-	input[type="text"]{
-		width: 96%;
-		margin: 5% auto;
-		padding: 5px;
-		font-size: $fontL;
-		background: transparent;
-		border: none;
-		border-bottom: 1px solid $acColor;
-		@include border-radius(0px);
+	p{
+		color: $acColor;
+		text-align: center;
+		font-size: 50px;
+		margin-bottom: 20px;
 	}
 
-	input[type="mail"]{
-		width: 96%;
-		margin: 5% auto;
-		padding: 5px;
-		font-size: $fontL;
-		background: transparent;
-		border: none;
-		border-bottom: 1px solid $acColor;
-		@include border-radius(0px);
-	}
-
-	input[type="password"]{
-		width: 96%;
-		margin: 5% auto;
-		padding: 5px;
-		font-size: $fontL;
-		background: transparent;
-		border: none;
-		border-bottom: 1px solid $acColor;
-		@include border-radius(0px);
-	}
-
-	input[type="date"]{
-		width: 96%;
-		margin: 4% auto 5%;
-		padding: 5px;
-		font-size: $fontL;
-		background: transparent;
-		border: none;
-		border-bottom: 1px solid $acColor;
-		@include border-radius(0px);
-	}
-
-
-	input[type="submit"]{
+	form{
 		width: 100%;
-		margin: 10% auto;
-		padding: 6.7%;
-		font-size: 16px;
-		color: $white;
-		background: $BTcolor;
-		border: none;
-		@include border-radius(0px);
-		@include appearance(none);
-	}
+		margin: auto;
+		input[type="text"]{
+			width: 98%;
+			margin: 5% auto;
+			padding: 1%;
+			font-size: $fontL;
+			background: transparent;
+			border: none;
+			border-bottom: 1px solid $acColor;
+			@include border-radius(0px);
+		}
 
-	#gender{
-		margin-top: 8%;
-		font-size: $fontL;
-		input[type="radio"]{
-			display: none;
-			width: 0;
-			height: 0;
-			margin: 0;
-			padding: 0;
+		input[type="mail"]{
+			width: 97.5%;
+			margin: 5% auto;
+			padding: 5px;
+			font-size: $fontL;
+			background: transparent;
+			border: none;
+			border-bottom: 1px solid $acColor;
+			@include border-radius(0px);
 		}
-		label{
-			display: inline-block;
-			width: 50%;
-			padding: 4%;
-			background: $white;
-			color: #3c3c3c;
-			text-align: center;
-			border: 1px solid $mainColor;
-			@include box-sizing(border-box);
+
+		input[type="password"]{
+			width: 97.5%;
+			margin: 5% auto;
+			padding: 5px;
+			font-size: $fontL;
+			background: transparent;
+			border: none;
+			border-bottom: 1px solid $acColor;
+			@include border-radius(0px);
 		}
-		input[type="radio"]:checked + .switch-on {
-			background-color: $mainColor;
+
+		input[type="date"]{
+			width: 97.5%;
+			margin: 4% auto 5%;
+			padding: 5px;
+			font-size: $fontL;
+			background: transparent;
+			border: none;
+			border-bottom: 1px solid $acColor;
+			@include border-radius(0px);
+		}
+
+
+		input[type="submit"]{
+			width: 100%;
+			margin: 25px auto;
+			padding: 6.7%;
+			font-size: 16px;
 			color: $white;
+			background: $BTcolor;
+			border: none;
+			@include border-radius(0px);
+			@include appearance(none);
 		}
-		input[type="radio"]:checked + .switch-off {
-			background-color: $mainColor;
+
+		#gender{
+			margin-top: 8%;
+			font-size: $fontL;
+			input[type="radio"]{
+				display: none;
+				width: 0;
+				height: 0;
+				margin: 0;
+				padding: 0;
+			}
+			label{
+				display: inline-block;
+				width: 50%;
+				padding: 4%;
+				background: $white;
+				color: #3c3c3c;
+				text-align: center;
+				border: 1px solid $mainColor;
+				@include box-sizing(border-box);
+			}
+			input[type="radio"]:checked + .switch-on {
+				background-color: $mainColor;
+				color: $white;
+			}
+			input[type="radio"]:checked + .switch-off {
+				background-color: $mainColor;
+				color: $white;
+			}
+		}
+
+	}
+
+	#snsLogin{
+		width: 100%;
+		margin: auto;
+		font-size: $fontS;
+		#fb{
+			display: block;
+			padding-bottom: 1px;
 			color: $white;
+			text-decoration: none;
+			background: #297fb8;
+			i{
+				margin-right: 37%;
+				padding: 6.5% 7.6% 4.5% 8.5%;
+				border-right: 1px solid #19659f;
+			}
+			span{
+				padding-top: 35px;
+				position: absolute;
+			}
 		}
-	}
-
-}
-
-#snsLogin{
-	width: 64%;
-	margin: auto;
-	padding: 5%;
-	font-size: $fontS;
-	#fb{
-		display: block;
-		padding-bottom: 1px;
-		color: $white;
-		text-decoration: none;
-		background: #297fb8;
-		i{
-			margin-right: 18%;
-			padding: 6.5% 7.6% 4.5% 8.5%;
-			border-right: 1px solid #19659f;
-		}
-		span{
-			margin-top: 7%;
-			position: absolute;
-			right: 21%
-		}
-	}
-	#tw{
-		display: block;
-		padding-bottom: 1px;
-		color: $white;
-		text-decoration: none;
-		background: #3598dc;
-		i{
-			margin-right: 18%;
-			padding: 6.5% 5% 4.5% 6.3%;
-			border-right: 1px solid #2484ce;
-		}
-		span{
-			margin-top: 7%;
-			position: absolute;
-			right: 21%
+		#tw{
+			display: block;
+			padding-bottom: 1px;
+			color: $white;
+			text-decoration: none;
+			background: #3598dc;
+			i{
+				margin-right: 42.5%;
+				padding: 6.5% 5% 4.5% 6.3%;
+				border-right: 1px solid #2484ce;
+			}
+			span{
+				padding-top: 35px;
+				position: absolute;
+			}
 		}
 	}
 }
