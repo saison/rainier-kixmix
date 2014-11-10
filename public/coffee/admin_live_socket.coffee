@@ -5,30 +5,48 @@ $ ->
 
   # bgFlash
   bgColor = (count) ->
-    $("#data10 span.num").text(count)
+    console.log "bgColor => " + count
+
+    $("#toserver .toServer").text count.toString()
 
     if count < 10
+      if $("#heatLevel").hasClass "level1"
+        $("#heatLevel").removeClass "level2"
       $("#heatLevel").addClass "level1"
       return
     else if count < 20
-      $("#heatLevel").removeClass "level1"
+      if $("#heatLevel").hasClass "level1"
+        $("#heatLevel").removeClass "level1"
+      if $("#heatLevel").hasClass "level3"
+        $("#heatLevel").removeClass "level3"
       $("#heatLevel").addClass "level2"
       return
     else if count < 30
-      $("#heatLevel").removeClass "level2"
+      if $("#heatLevel").hasClass "level2"
+        $("#heatLevel").removeClass "level2"
+      if $("#heatLevel").hasClass "level4"
+        $("#heatLevel").removeClass "level4"
       $("#heatLevel").addClass "level3"
       return
     else if count < 40
-      $("#heatLevel").removeClass "level3"
+      if $("#heatLevel").hasClass "level3"
+        $("#heatLevel").removeClass "level3"
+      if $("#heatLevel").hasClass "level5"
+        $("#heatLevel").removeClass "level5"
       $("#heatLevel").addClass "level4"
       return
     else if count < 50
-      $("#heatLevel").removeClass "level4"
+      if $("#heatLevel").hasClass "level4"
+        $("#heatLevel").removeClass "level4"
+      if $("#heatLevel").hasClass "levelMax"
+        $("#heatLevel").removeClass "levelMax"
       $("#heatLevel").addClass "level5"
       return
     else if count >= 60
-      $("#heatLevel").removeClass "level5"
+      if $("#heatLevel").hasClass "level5"
+        $("#heatLevel").removeClass "level5"
       $("#heatLevel").addClass "levelMax"
+
       return
 
   # node socket.io
@@ -49,7 +67,9 @@ $ ->
     $("#toserver .toServer").text count.toString()
     return
 
-  s.on "toAll", (data) ->
-    $("#data13 span.socketLog").text "socket.io toAll"
-    $("#data14 span.toServer").text data.value
-    return
+  decrementCount = ->
+    if count > 0
+      count--
+    bgColor count
+
+  setInterval decrementCount, 2000

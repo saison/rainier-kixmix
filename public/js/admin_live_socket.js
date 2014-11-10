@@ -1,26 +1,58 @@
 (function() {
   $(function() {
-    var bgColor, count, domain, s;
+    var bgColor, count, decrementCount, domain, s;
     count = 0;
     $("#toserver .toServer").text(count.toString());
     bgColor = function(count) {
-      $("#data10 span.num").text(count);
+      console.log("bgColor => " + count);
+      $("#toserver .toServer").text(count.toString());
       if (count < 10) {
+        console.log("if 1");
+        if ($("#heatLevel").hasClass("level1")) {
+          $("#heatLevel").removeClass("level2");
+        }
         $("#heatLevel").addClass("level1");
       } else if (count < 20) {
-        $("#heatLevel").removeClass("level1");
+        console.log("if 2");
+        if ($("#heatLevel").hasClass("level1")) {
+          $("#heatLevel").removeClass("level1");
+        }
+        if ($("#heatLevel").hasClass("level3")) {
+          $("#heatLevel").removeClass("level3");
+        }
         $("#heatLevel").addClass("level2");
       } else if (count < 30) {
-        $("#heatLevel").removeClass("level2");
+        console.log("if 3");
+        if ($("#heatLevel").hasClass("level2")) {
+          $("#heatLevel").removeClass("level2");
+        }
+        if ($("#heatLevel").hasClass("level4")) {
+          $("#heatLevel").removeClass("level4");
+        }
         $("#heatLevel").addClass("level3");
       } else if (count < 40) {
-        $("#heatLevel").removeClass("level3");
+        console.log("if 4");
+        if ($("#heatLevel").hasClass("level3")) {
+          $("#heatLevel").removeClass("level3");
+        }
+        if ($("#heatLevel").hasClass("level5")) {
+          $("#heatLevel").removeClass("level5");
+        }
         $("#heatLevel").addClass("level4");
       } else if (count < 50) {
-        $("#heatLevel").removeClass("level4");
+        console.log("if 5");
+        if ($("#heatLevel").hasClass("level4")) {
+          $("#heatLevel").removeClass("level4");
+        }
+        if ($("#heatLevel").hasClass("levelMax")) {
+          $("#heatLevel").removeClass("levelMax");
+        }
         $("#heatLevel").addClass("level5");
       } else if (count >= 60) {
-        $("#heatLevel").removeClass("level5");
+        console.log("if 6");
+        if ($("#heatLevel").hasClass("level5")) {
+          $("#heatLevel").removeClass("level5");
+        }
         $("#heatLevel").addClass("levelMax");
       }
     };
@@ -38,10 +70,15 @@
       bgColor(count);
       $("#toserver .toServer").text(count.toString());
     });
-    return s.on("toAll", function(data) {
-      $("#data13 span.socketLog").text("socket.io toAll");
-      $("#data14 span.toServer").text(data.value);
-    });
+    decrementCount = function() {
+      console.log("interval 2000");
+      if (count > 0) {
+        count--;
+      }
+      console.log(count);
+      return bgColor(count);
+    };
+    return setInterval(decrementCount, 2000);
   });
 
 }).call(this);
