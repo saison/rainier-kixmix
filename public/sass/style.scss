@@ -45,8 +45,8 @@ header{
 }
 
 article{
-	max-width: 300px;
-	min-width: 300px;
+	max-width: 280px;
+	min-width: 280px;
 	margin: auto;
 	p{
 		color: $acColor;
@@ -60,7 +60,7 @@ article{
 		margin: auto;
 		input[type="text"]{
 			width: 98%;
-			margin: 5% auto;
+			margin: 3% auto;
 			padding: 1%;
 			font-size: $fontL;
 			background: transparent;
@@ -69,9 +69,9 @@ article{
 			@include border-radius(0px);
 		}
 
-		input[type="mail"]{
+		input[type="email"]{
 			width: 97.5%;
-			margin: 5% auto;
+			margin: 3% auto;
 			padding: 5px;
 			font-size: $fontL;
 			background: transparent;
@@ -82,7 +82,7 @@ article{
 
 		input[type="password"]{
 			width: 97.5%;
-			margin: 5% auto;
+			margin: 3% auto;
 			padding: 5px;
 			font-size: $fontL;
 			background: transparent;
@@ -93,7 +93,7 @@ article{
 
 		input[type="date"]{
 			width: 97.5%;
-			margin: 4% auto 5%;
+			margin: 0% auto 3%;
 			padding: 5px;
 			font-size: $fontL;
 			background: transparent;
@@ -149,8 +149,7 @@ article{
 
 	#snsLogin{
 		width: 100%;
-		margin: auto;
-		font-size: $fontS;
+		margin: 5% auto;
 		#fb{
 			display: block;
 			padding-bottom: 1px;
@@ -158,12 +157,12 @@ article{
 			text-decoration: none;
 			background: #297fb8;
 			i{
-				margin-right: 37%;
+				margin-right: 20%;
 				padding: 6.5% 7.6% 4.5% 8.5%;
 				border-right: 1px solid #19659f;
 			}
 			span{
-				padding-top: 35px;
+				padding-top: 22px;
 				position: absolute;
 			}
 		}
@@ -174,12 +173,12 @@ article{
 			text-decoration: none;
 			background: #3598dc;
 			i{
-				margin-right: 42.5%;
+				margin-right: 25%;
 				padding: 6.5% 5% 4.5% 6.3%;
 				border-right: 1px solid #2484ce;
 			}
 			span{
-				padding-top: 35px;
+				padding-top: 22px;
 				position: absolute;
 			}
 		}
