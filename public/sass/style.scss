@@ -44,7 +44,7 @@ header{
 	}
 }
 
-p{
+h2,p{
 	color: $acColor;
 	text-align: center;
 	font-size: 50px;
@@ -209,7 +209,34 @@ form{
 	}
 }
 
+.liveInfo{
+	a{
+		display: block;
+		width: 96%;
+		min-width: 320px;
+		height: 137px;
+		padding: 2%;
+		color: $white;
+		text-decoration: none;
+		background:-webkit-gradient(linear, 98% 0%, 6% 0%, from(transparent), to(#000000));
+		position: absolute;
+		z-index: 2;
+	}
+	.liveImg{
+		width: 100%;
+		min-width: 320px;
+		height: 150px;
+		position: absolute;
+		background: url(../images/live01.jpg);
+		background-size: 100%;
+	}
+	.place,.time{
+		display: inline-block;
+		position: absolute;
+		margin-top: 60px;
+	}
 
+}
 
 
 

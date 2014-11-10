@@ -1,41 +1,17 @@
 extends ../layout
 
 block content
+  form#Umenu
+    input(type="button")
   h2 Hi! #{user.username}
 
-  table
-    tr
-      th id
-      th name
-      th pass
-      th mail
-      th gender
-      th birthday
-    - each row in rows
-      tr
-        td #{row.user_id}
-        td #{row.username}
-        td #{row.password}
-        td #{row.mail}
-        td #{row.gender}
-        td #{row.birthday}
-  table
-    tr
-      th live_id
-      th title
-      th cast
-      th date
-      th address
-      th place
-    - each live in lives
-      tr
-        td #{live.live_id}
-        td #{live.title}
-        - var time = live.date.toDateString()
-        td #{live.cast}
-        td #{time}
-        td #{live.address}
-        td #{live.place}
   - each live in lives
-    a(href="/live/#{live.live_id}") #{live.title}
-  a(href="mypage/joinLives") mypage/joinLives
+    div.liveInfo
+      a(href="/live/#{live.live_id}") #{live.title}
+        br
+        span.place
+          i.fa.fa-map-marker #{live.place}
+        br
+        span.time
+          i.fa.fa-clock-o #{live.date}
+      div.liveImg
