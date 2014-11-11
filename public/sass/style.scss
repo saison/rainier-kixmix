@@ -208,6 +208,7 @@ article{
   top: 1em;
   left: 1em;
   z-index: 10;
+  @include transition(all 0.2s ease-in);
   span{
     display: inline-block;
     float: left;
@@ -215,6 +216,19 @@ article{
     height: 2px;
     margin: 1px 0 5px;
     background-color: $white;
+    @include transition( all .4s ease-out );
+  }
+  &.active{
+    @include transform(rotate(-45deg));
+    span:nth-child(1){
+      @include transform(rotate(0deg) translateY(10.5px));
+    }
+    span:nth-child(2){
+      opacity: 0;
+    }
+    span:nth-child(3){
+      @include transform(rotate(-90deg) translateX(5px));
+    }
   }
 }
 
