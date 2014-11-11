@@ -52,6 +52,7 @@
         $("#livePeople #leftPeople,#livePeople #rightPeople").css({
           display: "none"
         });
+        $("#bgStage #bg1").fadeIn(500);
         level = 5;
         sendLevel();
       } else if (count >= 60) {
@@ -62,6 +63,7 @@
         $("#livePeople #leftPeople,#livePeople #rightPeople").css({
           display: "block"
         });
+        $("#bgStage #bg1").fadeOut(500);
         level = 6;
         sendLevel();
       }

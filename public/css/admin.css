@@ -71,6 +71,14 @@ html, body {
   width: 100%;
   height: 100%;
 }
+#bgStage #bg1 {
+  display: block;
+  position: absolute;
+}
+#bgStage #bg2 {
+  display: block;
+  position: absolute;
+}
 
 #liveBg {
   height: 100%;
