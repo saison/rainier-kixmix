@@ -20,17 +20,6 @@ $ ->
     # y方向
     g = evt.rotationRate.gamma
 
-    bgColor = $("#liveHeatLevel").data("color")
-
-    # Flash Function
-    if Math.abs(xg) >= 8 or Math.abs(yg) <= 5
-      $("#liveHeatLevel").fadeOut 100, ->
-        $(this).fadeIn 100
-        return
-      return
-    else
-      $("#liveHeatLevel").stop().fadeIn 100
-
     return
 
   ), true
@@ -43,28 +32,45 @@ $ ->
       $("#youerLevel .graph").animate
         "height": "+=10px"
         ,10
-    bgColor count
     sendBroadcast()
+
+  # penlight
+  penFlg = true
+  $("#penLightMode").click ->
+    if penFlg
+      $("#liveBg").css
+        "display":"none"
+      $("#liveBgC").css
+        "display":"block"
+      penFlg = false
+    else
+      $("#liveBg").css
+        "display":"block"
+      $("#liveBgC").css
+        "display":"none"
+      penFlg = true
 
   # bgFlash
   bgColor = (value) ->
-    color = value % 4
-    if color == 0
-      $("#wrapper").css
-        background : "#ff64af"
-      $("#wrapper").data("color","#ff64af")
-    else if color == 1
-      $("#wrapper").css
-        background : "#40c8fe"
-      $("#wrapper").data("color","#40c8fe")
-    else if color == 2
-      $("#wrapper").css
-        background : "#ff8d41"
-      $("#wrapper").data("color","#ff8d41")
-    else if color == 3
-      $("#wrapper").css
-        background : "#ffffff"
-      $("#wrapper").data("color","#ffffff")
+    switch value
+      when 1
+        $("#liveBgC").css
+          background : "rgba(255, 255, 255, 1)"
+      when 2
+        $("#liveBgC").css
+          background : "rgba(150, 248, 255, 1)"
+      when 3
+        $("#liveBgC").css
+          background : "rgba(72, 169, 255, 1)"
+      when 4
+        $("#liveBgC").css
+          background : "rgba(255, 250, 103, 1)"
+      when 5
+        $("#liveBgC").css
+          background : "rgba(255, 160, 76, 1)"
+      when 6
+        $("#liveBgC").css
+          background : "rgba(255, 65, 65, 1)"
 
   # device select
   device = "no device"
@@ -96,7 +102,6 @@ $ ->
 
   s.on "toClient", (data) ->
     count = count + data.value
-    bgColor count
     return
 
   # audience
@@ -108,6 +113,7 @@ $ ->
     console.log data
     console.log data.level
     $("#venueLevel .levelArea span").text data.level
+    bgColor data.level
     switch data.level
       when 1
         $("#allAudienceLevel .graph").css
@@ -137,6 +143,15 @@ $ ->
 
 
   decrementCount = ->
+    $("#liveBgC").animate(
+      opacity: ".3"
+    , 250).animate(
+      opacity: "1"
+    , 250).animate(
+      opacity: ".3"
+    , 250).animate
+      opacity: "1"
+    , 250
     if count > 0
       count--
       if $("#youerLevel .graph").height() > 0

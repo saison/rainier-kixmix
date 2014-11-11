@@ -2,7 +2,8 @@ extends layout_admin_live
 
 block content
   #bgStage
-    img(src="/images/liveBgImg.png", alt="")
+    img#bg2(src="/images/liveBgImg2.png", alt="")
+    img#bg1(src="/images/liveBgImg1.png", alt="")
   #liveBg
     #movieBox
       video#liveVideo(onended='this.play();', autoplay='autoplay', loop='loop')
