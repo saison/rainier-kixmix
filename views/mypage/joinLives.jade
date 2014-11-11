@@ -1,14 +1,25 @@
 extends ../layout
 
 block content
-  h2 Hi! #{user.username}
+  #open
+  aside#sideMenu(style="left:-250px")
+    h2 Hi! #{user.username}
+    ul
+      li
+        a(href="/mypage") Home
+      li
+        a(href="joinLives") Lives
+      li
+        a(href="#") Setting
+      li
+        a(href="#") Sin out
   
   ul#joinLiveLists
     - each live in lives
       li
         a(href="joinLives/join/#{live.live_id}")
           .liveImg
-            img(src="/images/live01.jpg", alt="LiveImg")
+            img(src="/images/live02.jpg", alt="LiveImg")
           .listBg
           h3.liveTitle #{live.title}
           .liveInfo

@@ -1,7 +1,18 @@
 extends ../layout
 
 block content
-  h2 Hi! #{user.username}
+  #open
+  aside#sideMenu(style="left:-250px")
+    h2 Hi! #{user.username}
+    ul
+      li
+        a(href="/mypage") Home
+      li
+        a(href="joinLives") Lives
+      li
+        a(href="#") Setting
+      li
+        a(href="#") Sin out
   
   h3 参加できるライブ
   div 現在参加できるライブはありません
