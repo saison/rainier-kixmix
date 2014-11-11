@@ -216,18 +216,16 @@ article{
     height: 2px;
     margin: 1px 0 5px;
     background-color: $white;
-    @include transition( all .4s ease-out );
+    @include transition( all 0.4s ease-out );
   }
   &.active{
-    @include transform(rotate(-45deg));
     span:nth-child(1){
-      @include transform(rotate(0deg) translateY(10.5px));
-    }
-    span:nth-child(2){
-      opacity: 0;
+      @include transform(rotate(-45deg) translateX(-4.5px));
+      width: 60%;
     }
     span:nth-child(3){
-      @include transform(rotate(-90deg) translateX(5px));
+      @include transform(rotate(45deg) translateX(-4.5px));
+      width: 60%;
     }
   }
 }
@@ -337,5 +335,3 @@ aside{
     }
   }
 }
-
-
