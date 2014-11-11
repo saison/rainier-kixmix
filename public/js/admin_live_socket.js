@@ -2,10 +2,7 @@
   $(function() {
     var bgColor, count, decrementCount, domain, s;
     count = 0;
-    $("#toserver .toServer").text(count.toString());
     bgColor = function(count) {
-      console.log("bgColor => " + count);
-      $("#toserver .toServer").text(count.toString());
       if (count < 10) {
         if ($("#heatLevel").hasClass("level1")) {
           $("#heatLevel").removeClass("level2");
@@ -43,34 +40,58 @@
           $("#heatLevel").removeClass("levelMax");
         }
         $("#heatLevel").addClass("level5");
+        $("#livePeople #leftPeople,#livePeople #rightPeople").css({
+          display: "none"
+        });
+        $("#bonus").css({
+          display: "none"
+        });
       } else if (count >= 60) {
         if ($("#heatLevel").hasClass("level5")) {
           $("#heatLevel").removeClass("level5");
         }
         $("#heatLevel").addClass("levelMax");
+        $("#bonus").css({
+          display: "block"
+        });
+        $("#livePeople #leftPeople,#livePeople #rightPeople").css({
+          display: "block"
+        });
       }
     };
-    domain = location.hostname;
-    s = io.connect('http://' + domain + ':3000');
-    s.on("connect", function() {
-      return $("#data .socketLog").text("socket.io Connect");
-    });
-    s.on("disconnect", function(client) {
-      return $("#data .socketLog").text("socket.io Disconnect");
-    });
-    s.on("toClient", function(data) {
-      $("#data .socketLog").text("socket.io toClient");
-      count = count + data.value;
-      bgColor(count);
-      $("#toserver .toServer").text(count.toString());
-    });
     decrementCount = function() {
+      $("#heatLevel").animate({
+        opacity: ".3"
+      }, 250).animate({
+        opacity: "1"
+      }, 250).animate({
+        opacity: ".3"
+      }, 250).animate({
+        opacity: "1"
+      }, 250);
+      $("#livePeople").animate({
+        "margin-bottom": "0"
+      }, 250).animate({
+        "margin-bottom": "-15px"
+      }, 250).animate({
+        "margin-bottom": "0"
+      }, 250).animate({
+        "margin-bottom": "-15px"
+      }, 250);
       if (count > 0) {
         count--;
       }
-      return bgColor(count);
+      bgColor(count);
     };
-    return setInterval(decrementCount, 2000);
+    domain = location.hostname;
+    s = io.connect('http://' + domain + ':3000');
+    s.on("connect", function() {});
+    s.on("disconnect", function(client) {});
+    s.on("toClient", function(data) {
+      count = count + data.value;
+      bgColor(count);
+    });
+    return setInterval(decrementCount, 1000);
   });
 
 }).call(this);

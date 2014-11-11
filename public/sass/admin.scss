@@ -23,6 +23,7 @@ html,body{
   text-align: center;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 #movieBox{
   position: relative;
@@ -37,29 +38,6 @@ html,body{
   bottom: 0;
   z-index: 4;
   opacity: 1;
-  @include animation-name('liveAnimeLevel1');
-  @include animation-duration(0.5s);
-  @include animation-timing-function(ease);
-  @include animation-delay(0);
-  @include animation-iteration-count(infinite);
-  @include animation-direction(alternate);
-}
-@include keyframes(liveAnimeLevel1) {
-  0% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .level1{
@@ -109,15 +87,32 @@ html,body{
 
 #livePeople{
   width: 100%;
-  bottom: 0;
+  bottom: -15px;
   text-align: center;
   position: absolute;
   z-index: 5;
-  overflow: hidden;
-  img{
-    width: 70%;
-    height: auto;
-    margin-bottom: -80px;
+  #default{
+    img{
+      width: 70%;
+      height: auto;
+    }
+  }
+  #rightPeople,
+  #leftPeople{
+    display: none;
+    width: 60%;
+    position: absolute;
+    z-index: 6;
+    bottom: -15px;
+    img{
+      width: 60%;
+    }
+  }
+  #leftPeople{
+    left: -150px;
+  }
+  #rightPeople{
+    right: -150px;
   }
 }
 
