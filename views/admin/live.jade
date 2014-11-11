@@ -9,22 +9,10 @@ block content
         source(src='/media/hal.mp4', type='video/mp4')
     #heatLevel.level1
     #livePeople
-      img(src="/images/livePeople.png", alt="livepepole")
+      #default
+        img(src="/images/livePeople.png", alt="livepepole")
+      #leftPeople
+        img(src="/images/livePeople.png", alt="livepepole")
+      #rightPeople
+        img(src="/images/livePeople.png", alt="livepepole")
     #kashi High And Loud
-  #control
-    input#play(type='button', value='再生')
-    input#pause(type='button', value='一時停止')
-    input#upV(type='button', value='↑')
-    input#downV(type='button', value='↓')
-  
-  #nowTime 現在（秒）：
-    span#ichi 0
-  
-  #data SocketLog: 
-    span.socketLog
-    
-  #toserver Count: 
-    span.toServer
-    
-  a#voiceTest toServer
-    

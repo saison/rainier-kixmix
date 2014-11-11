@@ -1,13 +1,9 @@
 $ ->
   count = 0
 
-  $("#toserver .toServer").text count.toString()
 
   # bgFlash
   bgColor = (count) ->
-    console.log "bgColor => " + count
-
-    $("#toserver .toServer").text count.toString()
 
     if count < 10
       if $("#heatLevel").hasClass "level1"
@@ -41,13 +37,46 @@ $ ->
       if $("#heatLevel").hasClass "levelMax"
         $("#heatLevel").removeClass "levelMax"
       $("#heatLevel").addClass "level5"
+      $("#livePeople #leftPeople,#livePeople #rightPeople").css
+        display: "none"
+      $("#bonus").css
+        display: "none"
       return
     else if count >= 60
       if $("#heatLevel").hasClass "level5"
         $("#heatLevel").removeClass "level5"
       $("#heatLevel").addClass "levelMax"
+      $("#livePeople #leftPeople,#livePeople #rightPeople").css
+        display: "block"
 
       return
+
+  decrementCount = ->
+    $("#heatLevel").animate(
+      opacity: ".3"
+    , 250).animate(
+      opacity: "1"
+    , 250).animate(
+      opacity: ".3"
+    , 250).animate
+      opacity: "1"
+    , 250
+
+    $("#livePeople").animate(
+      "margin-bottom": "0"
+    , 250).animate(
+      "margin-bottom": "-15px"
+    , 250).animate(
+      "margin-bottom": "0"
+    , 250).animate
+      "margin-bottom": "-15px"
+    , 250
+
+    if count > 0
+      count--
+
+    bgColor count
+    return
 
   # node socket.io
   domain = location.hostname
@@ -55,21 +84,14 @@ $ ->
   s = io.connect 'http://' + domain + ':3000'
 
   s.on "connect", -> # 接続時
-    $("#data .socketLog").text "socket.io Connect"
 
   s.on "disconnect", (client) -> # 切断時
-    $("#data .socketLog").text "socket.io Disconnect"
 
   s.on "toClient", (data) ->
-    $("#data .socketLog").text "socket.io toClient"
     count = count + data.value
     bgColor count
-    $("#toserver .toServer").text count.toString()
     return
 
-  decrementCount = ->
-    if count > 0
-      count--
-    bgColor count
 
-  setInterval decrementCount, 2000
+  # # down heat level
+  setInterval decrementCount, 1000
