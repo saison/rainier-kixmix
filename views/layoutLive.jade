@@ -3,6 +3,7 @@ html(lang="ja")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width initial-scale=1.0 user-scalable=no")
+    link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet')
     link(rel="stylesheet", href="/css/style.css")
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     script(src="/js/jquery.easing.1.3.js")
@@ -12,7 +13,10 @@ html(lang="ja")
     script(src="/js/script.js")
     title= title
   body
-    #warpper
+    #liveBg
+      img(src="/images/liveBg.png", alt="live")
+    #liveBgC
+    #warpper.liveWrapper(data-color="ffffff")
       header
         h1= title
       block content
