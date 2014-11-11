@@ -85,6 +85,17 @@ html, body {
   position: relative;
   z-index: 3;
 }
+#movieBox video {
+  width: 100%;
+}
+#movieBox .seeThru-display {
+  width: 100%;
+  height: auto;
+}
+#movieBox .seeThru-buffer {
+  width: 100%;
+  height: auto;
+}
 
 #heatLevel {
   display: block;
@@ -183,23 +194,4 @@ html, body {
   position: absolute;
   z-index: 6;
   bottom: 50px;
-}
-
-#bonus {
-  display: none;
-  width: 1000px;
-  position: fixed;
-  z-index: 20;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -500px;
-  -moz-transform: rotate(-10deg);
-  -ms-transform: rotate(-10deg);
-  -webkit-transform: rotate(-10deg);
-  transform: rotate(-10deg);
-}
-#bonus img {
-  width: 1000px;
-  height: auto;
 }

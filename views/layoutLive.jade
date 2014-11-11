@@ -5,9 +5,14 @@ html(lang="ja")
     meta(name="viewport", content="width=device-width initial-scale=1.0 user-scalable=no")
     link(rel="stylesheet", href="/css/style.css")
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+    script(src="/js/jquery.easing.1.3.js")
     script(src="/socket.io/socket.io.js")
+    script(src="/js/sideMenu.js")
     script(src="/js/gShake.js")
     script(src="/js/script.js")
     title= title
   body
-    block content
+    #warpper
+      header
+        h1= title
+      block content

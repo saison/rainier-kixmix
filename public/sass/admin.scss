@@ -28,6 +28,17 @@ html,body{
 #movieBox{
   position: relative;
   z-index: 3;
+  video{
+    width: 100%;
+  }
+  .seeThru-display{
+    width: 100%;
+    height: auto;
+  }
+  .seeThru-buffer{
+    width: 100%;
+    height: auto;
+  }
 }
 
 #heatLevel{

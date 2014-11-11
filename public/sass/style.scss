@@ -16,7 +16,7 @@ body {
   font-size: 13px;
 }
 
-%clierfix{
+%clearfix{
   @include clearfix;
 }
 
@@ -311,7 +311,7 @@ aside{
         bottom: 0;
         z-index: 3;
         @mixin liveInfoText(){
-          @extend %clierfix;
+          @extend %clearfix;
           height: 20px;
           line-height: 20px;
           span{
@@ -333,6 +333,107 @@ aside{
           @include liveInfoText;
         }
       }
+    }
+  }
+}
+
+// Live HeatLevelMap
+#liveHeatLevel{
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 20px;
+  .heatLevelbox{
+    @extend %clearfix;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 8px;
+    .title{
+      display: inline-block;
+      float: left;
+      margin-right: 20px;
+      h3{
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
+      }
+      span.subTitle{
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        font-size: 13px;
+        color: $acColor;
+      }
+    }
+    .countArea{
+      float: right;
+      vertical-align: bottom;
+      .count{
+        display: inline-block;
+        margin-right: 5px;
+        font-size: 25px;
+      }
+      span{
+        font-size: 13px;
+        margin-left: 10px;
+      }
+    }
+    .levelArea{
+      float: right;
+      vertical-align: bottom;
+      .level{
+        font-size: 15px;
+        span{
+          font-size: 25px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  #heatGraph{
+    width: 100%;
+    height: 320px;
+    #GraphTitle{
+      h3{
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
+      }
+      span.subTitle{
+        display: inline-block;
+        height: 20px;
+        line-height: 20px;
+        font-size: 13px;
+        color: $acColor;
+      }
+    }
+    #allAudienceLevel,#youerLevel{
+      float: left;
+      width: 50%;
+      height: 320px;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+      .graph{
+        width: 50%;
+        position: absolute;
+        left: 25%;
+        bottom: 20px;
+      }
+      .title{
+        width: 100%;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+    #allAudienceLevel .graph{
+      background-color: #ff813a;
+      height: 50px;
+    }
+    #youerLevel .graph{
+      background-color: #41c0f2;
     }
   }
 }

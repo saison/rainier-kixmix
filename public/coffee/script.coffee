@@ -20,31 +20,16 @@ $ ->
     # y方向
     g = evt.rotationRate.gamma
 
-
-    $("#data1 span.num").text(g.toFixed(3))
-    $("#data2 span.num").text(b.toFixed(3))
-    $("#data3 span.num").text(a.toFixed(3))
-    $("#data4 span.num").text(zg.toFixed(3))
-    $("#data5 span.num").text(yg.toFixed(3))
-    $("#data6 span.num").text(xg.toFixed(3))
-    $("#data7 span.num").text(z.toFixed(3))
-    $("#data8 span.num").text(y.toFixed(3))
-    $("#data9 span.num").text(x.toFixed(3))
-
-
-    bgColor = $("#wrapper").data("color")
-    $("#data11 span.color").text(bgColor)
+    bgColor = $("#liveHeatLevel").data("color")
 
     # Flash Function
     if Math.abs(xg) >= 8 or Math.abs(yg) <= 5
-      $("#data12 span.flash").text("start")
-      $("#wrapper").fadeOut 100, ->
+      $("#liveHeatLevel").fadeOut 100, ->
         $(this).fadeIn 100
         return
       return
     else
-      $("#data12 span.flash").text("end")
-      $("#wrapper").stop().fadeIn 100
+      $("#liveHeatLevel").stop().fadeIn 100
 
     return
 
@@ -52,15 +37,17 @@ $ ->
 
   # Shake Motion
   count = 0
-  $("#data10 span.num").text(count)
   $(@).gShake ->
     count++
+    if $("#youerLevel .graph").height() < 300
+      $("#youerLevel .graph").animate
+        "height": "+=10px"
+        ,10
     bgColor count
     sendBroadcast()
 
   # bgFlash
   bgColor = (value) ->
-    $("#data10 span.num").text(count)
     color = value % 4
     if color == 0
       $("#wrapper").css
@@ -86,17 +73,14 @@ $ ->
   else if navigator.userAgent.indexOf('iPhone') == -1 and device.indexOf('Android') == -1
     device = "pc"
 
-  # device locat
-  if navigator.geolocation
-    navigator.geolocation.getCurrentPosition( (position) ->
-      lat = position.coords.latitude
-      lon = position.coords.longitude
-      $("#data15 span.location").text lat
-      $("#data16 span.location").text lon
-      return
-    )
-  else
-    $("#data15 span.location").text "false location"
+  # # device locat
+  # if navigator.geolocation
+  #   navigator.geolocation.getCurrentPosition( (position) ->
+  #     lat = position.coords.latitude
+  #     lon = position.coords.longitude
+  #     return
+  #   )
+  # else
 
   # node socket.io
   domain = location.hostname
@@ -104,38 +88,60 @@ $ ->
   s = io.connect 'http://' + domain + ':3000'
 
   s.on "connect", -> # 接続時
-    $("#data13 span.socketLog").text "socket.io Connect"
+    s.emit "toLogin",
+      user: $("aside#sideMenu h2").text()
+
 
   s.on "disconnect", (client) -> # 切断時
-    $("#data13 span.socketLog").text "socket.io Disconnect"
 
   s.on "toClient", (data) ->
-    $("#data13 span.socketLog").text "socket.io toClient"
-    $("#data14 span.toServer").text data.value + "/" + data.device
     count = count + data.value
     bgColor count
     return
 
-  s.on "toAll", (data) ->
-    $("#data13 span.socketLog").text "socket.io toAll"
-    $("#data14 span.toServer").text data.value
+  # audience
+  s.on "toLogin", (data) ->
+    $("#audienceArea .countArea .count").text data.audience
+
+  s.on "toLevel", (data) ->
+    console.log "tolevel"
+    console.log data
+    console.log data.level
+    $("#venueLevel .levelArea span").text data.level
+    switch data.level
+      when 1
+        $("#allAudienceLevel .graph").css
+          "height": "50px"
+      when 2
+        $("#allAudienceLevel .graph").css
+          "height": "100px"
+      when 3
+        $("#allAudienceLevel .graph").css
+          "height": "150px"
+      when 4
+        $("#allAudienceLevel .graph").css
+          "height": "200px"
+      when 5
+        $("#allAudienceLevel .graph").css
+          "height": "250px"
+      when 6
+        $("#allAudienceLevel .graph").css
+          "height": "300px"
     return
 
   sendBroadcast = ->
-    $ ->
-      $("#data13 span.socketLog").text "Broadcast call"
     s.emit "toServerBroad", #サーバへ送信
       value: 1,
       device: device
     return
 
-  sendAll = ->
-    s.emit "toAll", #サーバへ送信
-      value: 1,
-      device: device
-    return
 
-  # socket function
-  $("a#voiceTest").click ->
-    $("#data13 span.socketLog").text "Button Push"
-    sendAll();
+  decrementCount = ->
+    if count > 0
+      count--
+      if $("#youerLevel .graph").height() > 0
+        $("#youerLevel .graph").animate
+          "height": "-=10px"
+          ,1000
+
+  setInterval decrementCount, 1000

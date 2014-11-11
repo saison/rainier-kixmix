@@ -38,6 +38,12 @@ gulp.task("coffee", function(){
   .pipe(gulp.dest(p.scripts.dest))
 });
 
+// Watch
+gulp.task('watch', function() {
+  gulp.watch('public/sass/**/*.scss', ['compass']);
+  gulp.watch('public/coffee/**/*.coffee', ['coffee']);
+})
+
 // compile
 gulp.task('default', ['compass', 'coffee'], function() {
   console.log('gulp compile!')
