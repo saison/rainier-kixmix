@@ -24,7 +24,6 @@ html(lang="ja")
         span
         span
       aside#sideMenu(style="left:-250px")
-        h2 #{user.username}
         ul
           li
             a(href="/mypage") Home
@@ -33,7 +32,7 @@ html(lang="ja")
           li
             a(href="#") Setting
           li
-            a(href="#") Sing out
+            a(href="/logout") Sing out
       #penLightMode
         i.fa.fa-bolt
       block content
