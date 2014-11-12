@@ -1,24 +1,6 @@
 extends ../layoutLive
 
 block content
-  #open
-    span
-    span
-    span
-  aside#sideMenu(style="left:-250px")
-    h2 #{user.username}
-    ul
-      li
-        a(href="/mypage") Home
-      li
-        a(href="mypage/joinLives") Lives
-      li
-        a(href="#") Setting
-      li
-        a(href="#") Sin out
-  #penLightMode
-    i.fa.fa-bolt
-
   #liveHeatLevel(data-color="#ffffff")
     #audienceArea.heatLevelbox
       .title

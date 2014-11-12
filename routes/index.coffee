@@ -7,10 +7,17 @@ router = express.Router()
 
 # GET home page.
 router.get "/", (req, res) ->
-  res.render "index",
-    title: "KIX MIX"
+  if req.session.user
+    res.redirect "mypage"
+  else
+    res.render "index",
+      title: "KIX MIX"
   return
 
+# GET logout
+router.get "/logout", (req,res) ->
+  delete req.session.user
+  res.redirect "/"
 
 # POST login
 router.post "/login", (req, res) ->
