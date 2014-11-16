@@ -3,8 +3,14 @@ extend layout_admin
 block content
   h2 Admin Login
   
-  #adminLogin
-    form(action="/admin/login",method="post")
-      input(type="text",name="user_id",value="saison")
-      input(type="password",name="password",value="12345678")
-      input(type="submit",value="Admin Login")
+  .row
+    #adminLogin.col-xs-12
+      form(action="/admin/login",method="post")
+        .form-group.col-xs-5
+          label(for="userId") UserId
+          input#userId.form-control(type="text",name="user_id",value="saison")
+        .form-group.col-xs-5
+          label(for="pass") Password
+          input#pass.form-control(type="password",name="password",value="12345678")
+        .form-group.col-xs-12
+          input.btn.btn-primary(type="submit",value="Admin Login")

@@ -1,8 +1,6 @@
 extends layout_admin
 
 block content
-  h2 Hi! #{user.username}
-
   table.table
     tr
       th live_id
@@ -21,4 +19,4 @@ block content
         td #{time}
         td #{live.address}
         td #{live.place}
-  a(href="mypage/joinLives") addLive
+  a(href="/admin/addLive") addLive

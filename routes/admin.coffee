@@ -32,24 +32,42 @@ router.post "/login", (req, res) ->
   return
 
 router.get "/mypage", (req, res) ->
+  sess = req.session.admin
   mysqlLib.getConnection (err, mclient) ->
-    userInfoSql = "select * from users WHERE user_id = ?"
-    sess = req.session.admin
-    adminLivesSql = "SELECT * FROM lives INNER JOIN live_users ON lives.live_id = live_users.live_id WHERE live_users.user_id = ?"
-
-    mclient.query userInfoSql, sess.user_id, (err, adminInfoRows) ->
-      mclient.query adminLivesSql, sess.user_id, (err, adminLivesRows) ->
-
-        console.log adminLivesRows
-        res.render "admin/mypage",
-          title: "Kix Mix"
-          user: sess
-          rows: adminInfoRows
-          lives: adminLivesRows
+    adminLivesSql = "SELECT * FROM lives"
+    mclient.query adminLivesSql, sess.user_id, (err, adminLivesRows) ->
+      console.log adminLivesRows
+      res.render "admin/mypage",
+        title: "Kix Mix"
+        user: sess
+        lives: adminLivesRows
   return
 
 router.get "/live/:live_id([0-9]+)", (req, res) ->
   res.render "admin/live"
+
+router.get "/addLive", (req,res) ->
+  sess = req.session.user
+  res.render "admin/addLive",
+    title: "Kix Mix"
+    user: sess
+
+router.post "/add", (req,res) ->
+  # if req.param "title" and req.param "cast" and req.param "place" and req.param "address" and req.param "date"
+  title   = req.param "title"
+  cast    = req.param "cast"
+  place   = req.param "place"
+  address = req.param "address"
+  date    = req.param "date"
+
+  liveInsertData = {title:title,cast:cast,date:date,address:address,place:place}
+  liveInsertSql  = "INSERT INTO lives SET ?"
+  mysqlLib.getConnection (err, mclient) ->
+    mclient.query liveInsertSql, liveInsertData, (err, result) ->
+      console.log err,result
+      sess = req.session.user
+      res.redirect "/admin/mypage"
+  return
 
 
 module.exports = router
