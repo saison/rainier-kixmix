@@ -1,0 +1,30 @@
+extend layout_admin
+
+block content
+  h2 Add Live
+  
+  form.form-horizontal(role='form',action="add",method="post")
+    .form-group
+      label.col-sm-2.control-label LIVEタイトル
+      .col-sm-10
+        input.form-control(type='text', placeholder='タイトル', name="title")
+    .form-group
+      label.col-sm-2.control-label 出演者
+      .col-sm-10
+        input.form-control(type='text', placeholder='出演者', name="cast")
+    .form-group
+      label.col-sm-2.control-label 会場名称
+      .col-sm-10
+        input.form-control(type='text', placeholder='会場名称', name="place")
+    .form-group
+      label.col-sm-2.control-label 会場住所
+      .col-sm-10
+        input.form-control(type='text', placeholder='会場住所', name="address")
+    .form-group
+      label.col-sm-2.control-label 開催日
+      .col-sm-10
+        input.form-control(type='date', placeholder='開催日時', name="date")
+    
+    .form-group
+      .col-sm-12(style="text-align:right;")
+        input.btn.btn-lg.btn-success(type="submit",value="addLive")
