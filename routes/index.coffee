@@ -1,7 +1,5 @@
 express = require "express"
 mysqlLib = require './model/mysqlLib'
-passport = require 'passport'
-TwitterStrategy = require('passport-twitter').Strategy
 dateUtils = require 'date-utils'
 router = express.Router()
 
@@ -43,76 +41,6 @@ router.post "/login", (req, res) ->
 
 
 
-
-# # Twitter
-# Passport sessionのセットアップ
-passport.serializeUser (user, done) ->
-  done null, user
-  return
-
-passport.deserializeUser (obj, done) ->
-  done null, obj
-  return
-
-# POST Twitter login
-TWITTER_CONSUMER_KEY = "9nnVQkAjiic5vh7jOI8qctzHa"
-TWITTER_CONSUMER_SECRET = "gcQs7rzqZ7YgN7NYTvR0DQGaSEDOW9GvKLxjBodESEZwDvj3Xc"
-#twitter
-passport.use new TwitterStrategy(
-  consumerKey: TWITTER_CONSUMER_KEY
-  consumerSecret: TWITTER_CONSUMER_SECRET
-  callbackURL: "http://127.0.0.1:3000/auth/twitter/callback/"
-, (token, tokenSecret, profile, done) ->
-
-  console.log token, tokenSecret, profile, done
-
-  userLoginSql = "select * from users WHERE tw_customer = ? AND tw_secret = ?"
-  userLoginData = [token, tokenSecret]
-
-  mysqlLib.getConnection (err, mclient) ->
-    mclient.query userLoginSql, userLoginData, (err, rows) ->
-      if err == null
-        req.session.user =
-          user_id: user_id
-          username: rows[0].username
-        res.redirect "mypage"
-      else
-        userInsertData = {user_id: profile.username, username: profile.displayName, birthday: birthday, signup: signup}
-        userInsertSql  = "INSERT INTO users SET ?"
-
-)
-
-
-# Twitter login
-router.get "/auth/twitter", passport.authenticate('twitter')
-
-# Twitterからのcallback
-router.get "/auth/twitter/callback", passport.authenticate("twitter",
-  successRedirect: "new"
-  failureRedirect: "/"
-)
-
-
-router.post "/auth/twitter/callback", (req, res) ->
-  #twitter
-  passport.use new TwitterStrategy(
-    consumerKey: TWITTER_CONSUMER_KEY
-    consumerSecret: TWITTER_CONSUMER_SECRET
-    callbackURL: "http://rainier.saison-lab.com:3000/auth/twitter/callback/"
-  , (token, tokenSecret, profile, done) ->
-    profile.twitter_token = token
-    profile.twitter_token_secret = tokenSecret
-    process.nextTick ->
-      done null, profile
-    return
-  )
-  return
-
-# POST Facebook login
-router.post "/facebooklogin", (req, res) ->
-  #facebook
-  res.send("facebook login")
-  return
 
 # GET New KixMix account
 router.get "/new", (req,res) ->
