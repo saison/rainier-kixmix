@@ -7,12 +7,17 @@ bodyParser = require "body-parser"
 session = require 'express-session'
 methodOverride = require 'method-override'
 multer  = require 'multer'
+# Passport
+passport = require 'passport'
+TwitterStrategy = require('passport-twitter').Strategy
 
-# routing
+
+# Path
 routes = require "./routes/index"
 mypage = require "./routes/mypage"
 live   = require "./routes/lives"
 admin  = require "./routes/admin"
+
 
 
 app = express()
@@ -32,8 +37,12 @@ app.use session(
   resave: true
   saveUninitialized: true
 )
+app.use passport.initialize()
+app.use passport.session()
 app.use require("node-compass")(mode: "expanded")
 app.use express.static(path.join(__dirname, "public"))
+
+# ルーティング
 app.use "/", routes
 app.use "/mypage", mypage
 app.use "/live", live
