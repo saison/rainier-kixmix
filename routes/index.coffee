@@ -63,7 +63,7 @@ passport.deserializeUser (obj, done) ->
 passport.use new TwitterStrategy(
   consumerKey: TWITTER_CONSUMER_KEY
   consumerSecret: TWITTER_CONSUMER_SECRET
-  callbackURL: "http://localhost:3000/auth/twitter/callback"
+  callbackURL: "http://rainier.saison-lab.com:3000/auth/twitter/callback"
 , (token, tokenSecret, profile, done) ->
   done null, profile
   return
