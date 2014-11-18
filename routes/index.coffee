@@ -1,6 +1,8 @@
 express = require "express"
 mysqlLib = require './model/mysqlLib'
 dateUtils = require 'date-utils'
+passport = require 'passport'
+TwitterStrategy = require('passport-twitter').Strategy
 router = express.Router()
 
 # GET home page.
@@ -39,14 +41,63 @@ router.post "/login", (req, res) ->
   else
     res.redirect "/"
 
+############################
+# Twitter
+############################
 
 
+TWITTER_CONSUMER_KEY = "9nnVQkAjiic5vh7jOI8qctzHa"
+TWITTER_CONSUMER_SECRET = "gcQs7rzqZ7YgN7NYTvR0DQGaSEDOW9GvKLxjBodESEZwDvj3Xc"
+
+# Passport sessionのセットアップ
+passport.serializeUser (user, done) ->
+  done null, user.id
+  return
+
+passport.deserializeUser (obj, done) ->
+  done null, obj
+  return
+
+
+# PassportでTwitterStrategyを使うための設定
+passport.use new TwitterStrategy(
+  consumerKey: TWITTER_CONSUMER_KEY
+  consumerSecret: TWITTER_CONSUMER_SECRET
+  callbackURL: "http://localhost:3000/auth/twitter/callback"
+, (token, tokenSecret, profile, done) ->
+  done null, profile
+  return
+)
+
+
+# Twitterの認証
+router.get "/auth/twitter", passport.authenticate("twitter")
+
+# Twitterからのcallback
+router.get "/auth/twitter/callback", passport.authenticate("twitter",
+  failureRedirect: "/"
+), (req, res) ->
+  req.session.social =
+    user_id: req.user.username
+    username: req.user.displayName
+    oauth_token: req.query.oauth_token
+    oauth_verifier: req.query.oauth_verifier
+  res.redirect "/sns_new"
+  return
+
+
+# GET New KixMix Account (for Social Account)
+router.get "/sns_new", (req, res) ->
+  res.render "createUserSns",
+    title: "Kix Mix"
+    social: req.session.social
 
 # GET New KixMix account
 router.get "/new", (req,res) ->
   res.render "createUser",
     title: "KIX MIX"
   return
+
 
 # GET New KixMix account
 router.post "/new", (req, res) ->
