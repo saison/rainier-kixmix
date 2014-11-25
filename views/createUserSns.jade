@@ -4,8 +4,8 @@ block content
   article
     p
      | Sing up
-    form(action="/new",method="post")
-      input(type="text",placeholder="User ID",name="user_id",value="#{social.user_id}")
+    form(action="/createsns",method="post")
+      input(type="hidden",name="user_id",value="#{social.user_id}")
       br
       input(type="text",placeholder="User Name",name="username",value="#{social.username}")
       br
@@ -21,7 +21,8 @@ block content
         input#off(type="radio",name="gender",value="1")
         label.switch-off(for='off') female
       input(type="date",name="birthday",value="1990-10-01")
-      input(type="hidden",name="oauth_token",value="#{social.oauth_token}")
-      input(type="hidden",name="oauth_verifier",value="#{social.oauth_verifier}")
+      input(type="hidden",name="witchSNS",value="#{social.sns}")
+      input(type="hidden",name="token",value="#{social.token}")
+      input(type="hidden",name="secret",value="#{social.secret}")
       br
       input(type="submit",value="Sing up")
