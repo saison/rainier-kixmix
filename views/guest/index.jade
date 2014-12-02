@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  ul#joinLiveLists
+    - each live in lives
+      li
+        a(href="guest/guestjoinlive/#{live.live_id}")
+          .liveImg
+            img(src="/images/live01.jpg", alt="LiveImg")
+          .listBg
+          h3.liveTitle #{live.title}
+          .liveInfo
+            .place
+              span.glyphicon.glyphicon-map-marker
+              h4 #{live.place}
+            .time
+              span.glyphicon.glyphicon-calendar
+              h4 #{live.date}
+          
+        
+
+  

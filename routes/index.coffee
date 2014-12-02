@@ -281,4 +281,15 @@ router.post "/new", (req, res) ->
 
   return
 
+router.get "/guestlogin", (req, res) ->
+  # ゲストアカウントでログイン
+  req.session.user =
+    user_id: "guest"
+    username: "ゲスト"
+
+  # ゲスト用マイページへ
+  res.redirect "/guest"
+
+  return
+
 module.exports = router

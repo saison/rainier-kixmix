@@ -16,6 +16,7 @@ TwitterStrategy = require('passport-twitter').Strategy
 routes = require "./routes/index"
 mypage = require "./routes/mypage"
 live   = require "./routes/lives"
+guest  = require "./routes/guest"
 admin  = require "./routes/admin"
 
 
@@ -46,6 +47,7 @@ app.use express.static(path.join(__dirname, "public"))
 app.use "/", routes
 app.use "/mypage", mypage
 app.use "/live", live
+app.use "/guest", guest
 app.use "/admin", admin
 
 
