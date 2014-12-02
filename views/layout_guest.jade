@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width initial-scale=1.0 user-scalable=no")
+    link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet')
+    link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', href='/css/style.css')
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+    script(src="/js/jquery-1.11.1.min.js")
+    script(src="/js/jquery.easing.1.3.js")
+    script(src="/js/sideMenu.js")
+    title= title
+  body
+    #warpper
+      header
+        h1= title
+      #open
+        span
+        span
+        span
+      aside#sideMenu(style="left:-250px")
+        ul
+          li
+            a(href="/guest") Home
+          li
+            a(href="#") Setting
+          li
+            a(href="/logout") Sing out
+
+      block content
