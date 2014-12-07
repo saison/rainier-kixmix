@@ -2,6 +2,9 @@ extends ../layoutLive
 
 block content
   #liveHeatLevel(data-color="#ffffff")
+    form(action="./tweet",method="post")
+      input#tweetText(type="text")
+      input#tweetButton(type="submit",value="tweet")
     #clap clap
     #audienceArea.heatLevelbox
       .title
