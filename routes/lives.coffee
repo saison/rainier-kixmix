@@ -1,5 +1,8 @@
 express = require("express")
 mysqlLib = require './model/mysqlLib'
+# Passport
+passport = require 'passport'
+TwitterStrategy = require('passport-twitter').Strategy
 router = express.Router()
 
 # GET / redirect
@@ -33,5 +36,23 @@ router.get "/:live_id([0-9]+)", (req, res) ->
       res.redirect "../mypage"
   else
     res.redirect "/"
+
+router.post "/tweet", (req, res) ->
+  sess = req.session.social
+  tweetData = {
+    status:"test"
+  }
+
+  passport._strategies.twitter._oauth.post "https://api.twitter.com/1.1/statuses/update.json",
+    req.user.twitter_token,
+    req.user.twitter_token_secret,
+    tweetData,
+    (err, data, response) ->
+      console.log err
+      res.redirect "/"
+
+
+  return
+
 
 module.exports = router

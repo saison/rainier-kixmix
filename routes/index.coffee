@@ -46,31 +46,6 @@ router.post "/login", (req, res) ->
 # Twitter
 ############################
 
-
-TWITTER_CONSUMER_KEY = "9nnVQkAjiic5vh7jOI8qctzHa"
-TWITTER_CONSUMER_SECRET = "gcQs7rzqZ7YgN7NYTvR0DQGaSEDOW9GvKLxjBodESEZwDvj3Xc"
-
-# Passport sessionのセットアップ
-passport.serializeUser (user, done) ->
-  done null, user.id
-  return1
-
-passport.deserializeUser (obj, done) ->
-  done null, obj
-  return
-
-# PassportでTwitterStrategyを使うための設定
-passport.use new TwitterStrategy(
-  consumerKey: TWITTER_CONSUMER_KEY
-  consumerSecret: TWITTER_CONSUMER_SECRET
-  callbackURL: "http://rainier.saison-lab.com:3000/auth/twitter/callback"
-, (token, tokenSecret, profile, done) ->
-  profile.twitter_token = token
-  profile.twitter_token_secret = tokenSecret
-  done null, profile
-  return
-)
-
 # Twitterの認証
 router.get "/auth/twitter", passport.authenticate("twitter")
 

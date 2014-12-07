@@ -4,7 +4,7 @@
 $mainColor: rgba(30,30,30,0.9);
 $white: #ffffff;
 $acColor: #888888;
-$BTcolor: #33cc99;
+$BTcolor: #2edb9e;
 $fontS: 12px;
 $fontM: 16px;
 $fontL: 20px;
@@ -477,4 +477,12 @@ aside{
       background-color: #41c0f2;
     }
   }
+}
+
+#clap{
+  width: 200px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  background-color: #f96363;
 }

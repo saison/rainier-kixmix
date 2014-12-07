@@ -50,6 +50,10 @@ $ ->
         "display":"none"
       penFlg = true
 
+  # clap push
+  $("#clap").click ->
+    sendBroadcast()
+
   # bgFlash
   bgColor = (value) ->
     switch value
