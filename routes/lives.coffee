@@ -13,8 +13,10 @@ router.get "/", (req, res) ->
 router.get "/:live_id([0-9]+)", (req, res) ->
   if req.session.user
     # get session & param live_id
+    console.log req.session.social
     sess = req.session.user
     live_id = Number req.params.live_id
+
     # isSet live_id
     if req.params.live_id
       mysqlLib.getConnection (err, mclient) ->
@@ -39,20 +41,20 @@ router.get "/:live_id([0-9]+)", (req, res) ->
 
 router.post "/tweet", (req, res) ->
   sess = req.session.social
-  tweetData = {
-    status:"test"
-  }
+  tweet = req.param("tweet")
+  tweetText = encodeURIComponent(tweet+" #KixMix")
 
-  passport._strategies.twitter._oauth.post "https://api.twitter.com/1.1/statuses/update.json",
-    req.user.twitter_token,
-    req.user.twitter_token_secret,
-    tweetData,
-    (err, data, response) ->
-      console.log err
-      res.redirect "/"
+  console.log tweet
 
+  passport._strategies.twitter._oauth.getProtectedResource "https://api.twitter.com/1.1/statuses/update.json?status=" + tweetText,
+  "POST",
+  req.session.social.token,
+  req.session.social.secret,
+  (err, data, response) ->
 
-  return
+    res.send "tweet"
+
+    return
 
 
 module.exports = router

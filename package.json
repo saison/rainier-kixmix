@@ -29,6 +29,8 @@
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
     "passport-twitter": "^1.0.2",
-    "socket.io": "^1.1.0"
+    "socket.io": "^1.1.0",
+    "twitter": "^0.2.13",
+    "util": "^0.10.3"
   }
 }
