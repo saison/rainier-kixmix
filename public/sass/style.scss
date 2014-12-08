@@ -518,6 +518,18 @@ aside{
     }
   }
 
+  %btBase{
+    display: block;
+    width: 70%;
+    margin: auto;
+    padding: 15px 0px;
+    color: $white;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    @include border-radius(4px);
+  }
+
   .contents{
     color: $white;
     background-color: rgba(30,30,30,0.7);
@@ -527,52 +539,130 @@ aside{
       text-align: center;
     }
     a{
-      display: block;
-      width: 70%;
-      margin: auto;
-      padding: 15px 0px;
-      color: $white;
-      text-align: center;
-      text-decoration: none;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-      background-color: #ff8f00;
-      @include border-radius(4px);
-      border-bottom: 3px solid #ac5a22;
+      @extend %btBase;
+      background-color: #e67e22;
+      border-bottom: 2px solid #d35400;
     }
   }
 
   #stepImg{
     width: 100%;
-    padding: 20px;
+    padding: 20px 20px 0px;
     background-color: #3aa497;
     @include box-sizing(border-box);
     #ex{
       padding: 10px 0;
       text-align: center;
+      line-height: 20px;
     }
     #title{
-      width: 82%;
+      width: 230px;
       height: 65px;
       margin: auto;
       background: url(../images/3stepSprite.png) no-repeat;
     }
-    #step1{
-      padding-top: 10px;
-      #title{
-        width: 52%;
-        height: 25px;
-        margin: auto;
-        background: url(../images/3stepSprite.png) no-repeat 0px -105px;
+  }
+
+  #step1{
+    margin: auto;
+    padding: 20px;
+    background: #0f2350;
+    .title{
+      width: 148px;
+      height: 25px;
+      margin: 0px auto 15px;
+      background: url(../images/3stepSprite.png) no-repeat 0px -105px;
+    }
+    .cont{
+      width: 280px;
+      margin: auto;
+      position: relative;
+      .exImg{
+        width: 102px;
+        height: 173px;
+        background: url(../images/3stepSprite.png) no-repeat -10px -140px;
+        background-size: 500px;
       }
-      #exImg{
-        width: 44%;
-        height: 206px;
-        background: url(../images/3stepSprite.png) no-repeat -12px -169px;
+      .text{
+        font-size: 14px;
+        line-height: 20px;
+        position: absolute;
+        top: 50px;
+        right: -10px;
       }
-      #text{
-        float: left;
-        font-size: 16px;
+    }
+  }
+  #step2{
+    background: #8e44ad;
+    margin: auto;
+    padding: 20px;
+   .title{
+      width: 128px;
+      height: 25px;
+      margin: 0px auto 15px;
+      background: url(../images/3stepSprite.png) no-repeat -220px -105px;
+    }
+    .cont{
+      width: 280px;
+      margin: auto;
+      position: relative;
+      .exImg{
+        width: 168px;
+        height: 175px;
+        background: url(../images/3stepSprite.png) no-repeat -154px -141px;
+        background-size: 500px;
       }
+      .text{
+        font-size: 14px;
+        line-height: 20px;
+        position: absolute;
+        top: 10px;
+        right: 8px;
+      }
+    }
+  }
+  #step3{
+    background: #f39c12;
+    margin: auto;
+    padding: 20px;
+   .title{
+      width: 135px;
+      height: 25px;
+      margin: 0px auto 15px;
+      background: url(../images/3stepSprite.png) no-repeat -445px -105px;
+    }
+    .cont{
+      width: 280px;
+      margin: auto;
+      position: relative;
+      .exImg{
+        width: 156px;
+        height: 175px;
+        background: url(../images/3stepSprite.png) no-repeat -344px -141px;
+        background-size: 500px;
+      }
+      .text{
+        font-size: 14px;
+        line-height: 20px;
+        position: absolute;
+        top: 40px;
+        right: -10px;
+        text-align: right;
+      }
+    }
+  }
+  .foot{
+    padding: 20px;
+    #in{
+      @extend %btBase;
+      margin-bottom: 20px;
+      background-color: #1abc9c;
+      border-bottom: 2px solid #16a085;
+    }
+    #new{
+      @extend %btBase;
+      background-color: #e67e22;
+      border-bottom: 2px solid #d35400;
     }
   }
 }
