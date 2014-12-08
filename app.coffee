@@ -21,7 +21,7 @@ TWITTER_CONSUMER_SECRET = "y3bkgj5PCbFRJ6UB1JRgdzQZJAmIqilcjU1SLjTJIk1mvQv0o7"
 # Passport sessionのセットアップ
 passport.serializeUser (user, done) ->
   done null, user.id
-  return1
+  return
 
 passport.deserializeUser (obj, done) ->
   done null, obj

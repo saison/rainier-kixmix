@@ -59,8 +59,22 @@ router.get "/auth/twitter/callback", passport.authenticate("twitter",
     token: req.user.twitter_token
     secret: req.user.twitter_token_secret
     sns: "twitter"
-  res.redirect "/sns_new"
-  return
+
+  loginSql = "SELECT * FROM users WHERE user_id = ?"
+  user_id  = req.user.id
+  console.log loginSql
+  console.log user_id
+  mysqlLib.getConnection (err, mclient) ->
+    mclient.query loginSql, user_id, (err, result) ->
+      console.log result
+      if typeof(result[0]) isnt "undefined"
+        req.session.user =
+          user_id: result[0].user_id
+          username: result[0].username
+        res.redirect "/mypage"
+      else
+        res.redirect "/sns_new"
+      return
 
 
 ############################
@@ -103,16 +117,18 @@ router.get "/auth/facebook/callback", passport.authenticate("facebook",
 router.get "/sns_new", (req, res) ->
   social = req.session.social
 
+  loginSql  = ""
+  loginData = ""
   if social.sns is "twitter"
-    loginSql  = "SELECT * FROM users WHERE user_id = ? AND tw_customer = ? AND tw_secret = ?"
-    loginData = [social.user_id, social.token, social.secret]
+    loginSql  = "SELECT * FROM users WHERE user_id = ?"
+    loginData = [social.user_id]
   else if social.sns is "facebook"
     loginSql  = "SELECT * FROM users WHERE user_id = ? AND fb_accessToken = ?"
-    loginData = [social.user_id, social.token]
+    loginData = [social.user_id]
 
   mysqlLib.getConnection (err, mclient) ->
     mclient.query loginSql, loginData, (err, result) ->
-      console.log result
+
       if typeof(result[0]) isnt "undefined"
         req.session.user =
           user_id: result[0].user_id

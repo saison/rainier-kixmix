@@ -13,12 +13,16 @@ router.get "/", (req, res) ->
         joinLivesSql = "SELECT * FROM lives INNER JOIN live_users ON lives.live_id = live_users.live_id WHERE live_users.user_id = ?"
 
         mclient.query joinLivesSql, sess.user_id, (err, joinLivesRows) ->
-          console.log joinLivesRows
-          res.render "mypage/index",
-            title: "Kix Mix"
-            user: sess
-            rows: userInfoRows
-            lives: joinLivesRows
+          if typeof(joinLivesRows[0]) isnt "undefined"
+            res.render "mypage/index",
+              title: "Kix Mix"
+              user: sess
+              rows: userInfoRows
+              lives: joinLivesRows
+          else
+            res.render "mypage/noLives",
+              title: "Kix Mix"
+              user: sess
   else
     res.redirect "/"
   return
