@@ -20,7 +20,7 @@ router.post "/login", (req, res) ->
 
     mysqlLib.getConnection (err, mclient) ->
       mclient.query adminLoginSql, adminLoginData, (err, rows) ->
-        if err == null
+        if typeof(rows[0]) isnt "undefined"
           req.session.admin =
             user_id: user_id
             username: rows[0].username

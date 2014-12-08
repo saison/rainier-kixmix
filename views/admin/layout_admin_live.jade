@@ -7,10 +7,22 @@ html
     script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
     script(src="/socket.io/socket.io.js")
     script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
-    script(type='text/javascript', src='/js/seeThru.min.js')
-    script(src="/js/admin_live.js")
-    script(src="/js/admin_live_movie.js")
+    //- script(type='text/javascript', src='/js/seeThru.min.js')
+    //- script(src="/js/admin_live.js")
+    //- script(src="/js/admin_live_movie.js")
+    script(src="/js/admin.js")
     script(src="/js/admin_live_socket.js")
     title= title
   body
+    aside
+      ul#videoController
+        li
+          span.glyphicon.glyphicon-pause
+        li
+          span.glyphicon.glyphicon-play
+      ul#volCntl
+        li
+          span.glyphicon.glyphicon-plus-sign
+        li
+          span.glyphicon.glyphicon-minus-sign
     block content

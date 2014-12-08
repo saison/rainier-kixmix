@@ -47,7 +47,6 @@ $ ->
       $("#heatLevel").addClass "level5"
       $("#livePeople #leftPeople,#livePeople #rightPeople").css
         display: "none"
-      $("#bgStage #bg1").fadeIn 500
       level = 5
       sendLevel()
       return
@@ -57,7 +56,6 @@ $ ->
       $("#heatLevel").addClass "levelMax"
       $("#livePeople #leftPeople,#livePeople #rightPeople").css
         display: "block"
-      $("#bgStage #bg1").fadeOut 500
       level = 6
       sendLevel()
       return
