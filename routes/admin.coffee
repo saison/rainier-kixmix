@@ -1,6 +1,8 @@
 express = require "express"
 mysqlLib = require './model/mysqlLib'
 dateUtils = require 'date-utils'
+passport = require 'passport'
+TwitterStrategy = require('passport-twitter').Strategy
 router = express.Router()
 
 # GET home page.
@@ -44,7 +46,18 @@ router.get "/mypage", (req, res) ->
   return
 
 router.get "/live/:live_id([0-9]+)", (req, res) ->
-  res.render "admin/live"
+  res.render "admin/live",
+    title: "Kix Mix Live"
+
+router.get "/search", (req, res) ->
+  passport._strategies.twitter._oauth.getProtectedResource "https://api.twitter.com/1.1/search/tweets.json?count=10&q=" + encodeURIComponent("#KixMix"),
+  "GET",
+  "263511857-YOrV7w2uoSuiqhV2mji6IvkPtgj92s1bnzgHkYD4",
+  "rAw6Vnq1qFYJyPZbqUtR6hA9K4k5WrKasPEpLQ7kq3Ak8",
+  (err, data, response) ->
+    jsonObj = JSON.parse(data)
+
+    res.send jsonObj
 
 router.get "/addLive", (req,res) ->
   sess = req.session.user

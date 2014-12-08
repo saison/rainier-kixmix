@@ -248,3 +248,51 @@ aside {
 #volCntl li span {
   font-size: 40px;
 }
+
+#kixmixTweet {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00aced;
+  text-align: left;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+}
+#kixmixTweet #twLogo {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+#kixmixTweet #twLogo i {
+  display: inline-block;
+  vertical-align: middle;
+  color: #ffffff;
+}
+#kixmixTweet #content {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  color: #ffffff;
+}
+#kixmixTweet #content #name {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+}
+#kixmixTweet #content #name:before {
+  content: "@";
+}
+#kixmixTweet #content #tweet {
+  float: left;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+}
