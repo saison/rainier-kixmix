@@ -13,8 +13,12 @@ router.get "/", (req, res) ->
 router.get "/:live_id([0-9]+)", (req, res) ->
   if req.session.user
     # get session & param live_id
-    console.log req.session.social
     sess = req.session.user
+    sns  = req.session.social
+    if typeof(sns) is "undefined"
+      isSocial = false
+    else
+      isSocial = true
     live_id = Number req.params.live_id
 
     # isSet live_id
@@ -28,6 +32,7 @@ router.get "/:live_id([0-9]+)", (req, res) ->
               res.render "lives/index",
                 title: "Kix Mix"
                 user: sess
+                isSocial: isSocial
                 liveInfo: liveInfo
           else
             console.log "isSQL false"

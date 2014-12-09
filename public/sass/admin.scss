@@ -230,9 +230,6 @@ aside{
       font-size: 20px;
       font-weight: bold;
       position: relative;
-      &:before{
-        content:"@";
-      }
     }
     #tweet{
       float: left;

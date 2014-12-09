@@ -286,9 +286,6 @@ aside {
   font-weight: bold;
   position: relative;
 }
-#kixmixTweet #content #name:before {
-  content: "@";
-}
 #kixmixTweet #content #tweet {
   float: left;
   position: relative;
