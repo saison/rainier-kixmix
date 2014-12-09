@@ -104,8 +104,19 @@ html, body {
 }
 
 #movieBox {
-  position: relative;
+  position: fixed;
+  left: 0;
   z-index: 3;
+}
+#movieBox #liveVideo {
+  position: fixed;
+  left: 0;
+  z-index: 1;
+}
+#movieBox #liveVideo2 {
+  position: fixed;
+  left: 0;
+  z-index: 2;
 }
 #movieBox video {
   width: 100%;

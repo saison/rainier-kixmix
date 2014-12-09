@@ -52,8 +52,19 @@ html,body{
   overflow: hidden;
 }
 #movieBox{
-  position: relative;
+  position: fixed;
+  left: 0;
   z-index: 3;
+  #liveVideo{
+    position: fixed;
+    left: 0;
+    z-index: 1;
+  }
+  #liveVideo2{
+    position: fixed;
+    left: 0;
+    z-index: 2;
+  }
   video{
     width: 100%;
   }
