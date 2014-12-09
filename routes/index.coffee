@@ -2,6 +2,7 @@ express = require "express"
 mysqlLib = require './model/mysqlLib'
 dateUtils = require 'date-utils'
 passport = require 'passport'
+crypto = require "crypto"
 TwitterStrategy = require('passport-twitter').Strategy
 FacebookStrategy = require('passport-facebook').Strategy
 router = express.Router()
@@ -27,12 +28,18 @@ router.post "/login", (req, res) ->
     user_id = req.param("user_id")
     password = req.param("password")
 
+    # Hash
+    sha1 = crypto.createHash('sha1')
+    sha1.update(password)
+    password = sha1.digest('hex')
+    console.log password
+
     userLoginSql = "select * from users WHERE user_id = ? AND password = ?"
     userLoginData = [user_id, password]
 
     mysqlLib.getConnection (err, mclient) ->
       mclient.query userLoginSql, userLoginData, (err, rows) ->
-        if err == null
+        if typeof(rows[0]) isnt "undefined"
           req.session.user =
             user_id: user_id
             username: rows[0].username
@@ -160,6 +167,11 @@ router.post "/createsns", (req, res) ->
       secret      = req.param("secret")
       sns           = req.param("witchSNS")
 
+      # Hash
+      sha1 = crypto.createHash('sha1')
+      sha1.update(password)
+      password = sha1.digest('hex')
+
       if sns is "twitter"
         userInsertData = {user_id: user_id, mail: mail, password: password, username: username, gender: gender, birthday: birthday, signup: signup, tw_customer: token, tw_secret: secret}
       else if sns is "facebook"
@@ -203,6 +215,11 @@ router.post "/new", (req, res) ->
       dt            = new Date()
       signup        = dt.toFormat("YYYY-MM-DD")
 
+      # Hash
+      sha1 = crypto.createHash('sha1')
+      sha1.update(password)
+      password = sha1.digest('hex')
+
       userInsertData = {user_id: user_id, mail: mail, password: password, username: username, gender: gender, birthday: birthday, signup: signup}
       userInsertSql  = "INSERT INTO users SET ?"
 
@@ -231,46 +248,6 @@ router.get "/new", (req,res) ->
     title: "KIX MIX"
   return
 
-
-# GET New KixMix account
-router.post "/new", (req, res) ->
-  # Validation
-  # そのうち実装する！
-
-
-  if req.param("user_id") and req.param("username") and req.param("mail") and req.param("password") and req.param("passwordRetry") and req.param("gender") and req.param("birthday")
-    if req.param("password") is req.param("passwordRetry")
-      # PostData
-      user_id       = req.param("user_id")
-      username      = req.param("username")
-      mail          = req.param("mail")
-      password      = req.param("password")
-      passwordRetry = req.param("passwordRetry")
-      gender        = req.param("gender")
-      birthday      = req.param("birthday")
-      dt            = new Date()
-      signup        = dt.toFormat("YYYY-MM-DD")
-
-      userInsertData = {user_id: user_id,mail: mail, password: password, username: username, gender: gender, birthday: birthday, signup: signup}
-      userInsertSql  = "INSERT INTO users SET ?"
-
-      mysqlLib.getConnection (err, mclient) ->
-        # Insert Users
-        mclient.query userInsertSql, userInsertData, (err, result) ->
-          console.log err,result
-
-          # SetSession
-          req.session.user =
-            user_id: user_id
-            username: username
-
-          res.redirect "/mypage"
-    else
-      res.redirect "new"
-  else
-    res.redirect "new"
-
-  return
 
 router.get "/guestlogin", (req, res) ->
   # ゲストアカウントでログイン
