@@ -7,22 +7,22 @@ block content
     form(action="/createsns",method="post")
       input(type="hidden",name="user_id",value="#{social.user_id}")
       br
-      input(type="text",placeholder="User Name",name="username",value="#{social.username}")
+      input(type="text",placeholder="ユーザー名",name="username",value="#{social.username}")
       br
-      input(type="email",placeholder="Mail",name="mail")
+      input(type="email",placeholder="メールアドレス",name="mail")
       br
-      input(type="password",placeholder="Password",name="password")
+      input(type="password",placeholder="パスワード",name="password")
       br
-      input(type="password",placeholder="Check Password",name="passwordRetry")
+      input(type="password",placeholder="パスワード確認",name="passwordRetry")
       br
       p#gender
         input#on(type="radio",name="gender",value="0",checked="checked")
-        label.switch-on(for='on') male
+        label.switch-on(for='on') 男
         input#off(type="radio",name="gender",value="1")
-        label.switch-off(for='off') female
+        label.switch-off(for='off') 女
       input(type="date",name="birthday",value="1990-10-01")
       input(type="hidden",name="witchSNS",value="#{social.sns}")
       input(type="hidden",name="token",value="#{social.token}")
       input(type="hidden",name="secret",value="#{social.secret}")
       br
-      input(type="submit",value="Sing up")
+      input(type="submit",value="アカウント登録")
