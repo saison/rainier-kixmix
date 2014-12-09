@@ -5,21 +5,21 @@ block content
     p
      | Sing up
     form(action="/new",method="post")
-      input(type="text",placeholder="User ID",name="user_id")
+      input(type="text",placeholder="ユーザーID",name="user_id")
       br
-      input(type="text",placeholder="User Name",name="username")
+      input(type="text",placeholder="ユーザー名",name="username")
       br
-      input(type="email",placeholder="Mail",name="mail")
+      input(type="email",placeholder="メールアドレス",name="mail")
       br
-      input(type="password",placeholder="Password",name="password")
+      input(type="password",placeholder="パスワード",name="password")
       br
-      input(type="password",placeholder="Check Password",name="passwordRetry")
+      input(type="password",placeholder="パスワード確認",name="passwordRetry")
       br
       p#gender
         input#on(type="radio",name="gender",value="0",checked="checked")
-        label.switch-on(for='on') male
+        label.switch-on(for='on') 男
         input#off(type="radio",name="gender",value="1")
-        label.switch-off(for='off') female
+        label.switch-off(for='off') 女
       input(type="date",name="birthday",value="1990-10-01")
       br
       input(type="submit",value="アカウント登録")
