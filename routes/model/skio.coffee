@@ -32,6 +32,13 @@ skio = ->
         device: data.device
       return
 
+    socket.on "toServerBroadLiveCall", (data) ->
+      console.log "toServerBroadLiveCall"
+      console.log data
+      socket.broadcast.emit "toCallLive",
+        call: data.call
+      return
+
     # ヒートレベルの送信
     socket.on "toLevel", (data) ->
       console.log "toLevel"

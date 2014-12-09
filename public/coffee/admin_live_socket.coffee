@@ -101,8 +101,20 @@ $ ->
     bgColor count
     return
 
+  callN = 0
+  s.on "toCallLive", (data) ->
+    console.log "toServerBroadLiveCall"
+    left = Math.floor(Math.random()*100)
+    top = Math.floor(Math.random()*100)
+    fsize = Math.floor(Math.random()*50)
+    callN++
+
+    $("#liveCall").append "<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;'>" + data.call + "</div>"
+
+    $(".call" + callN).fadeOut(1500)
+
+
   sendLevel = ->
-    console.log "sendLevel"
     s.emit "toLevel",
       level: level
     return

@@ -1,6 +1,6 @@
 (function() {
   $(function() {
-    var bgColor, count, decrementCount, domain, level, s, sendLevel;
+    var bgColor, callN, count, decrementCount, domain, level, s, sendLevel;
     count = 0;
     level = 1;
     bgColor = function(count) {
@@ -98,8 +98,18 @@
       count = count + data.value;
       bgColor(count);
     });
+    callN = 0;
+    s.on("toCallLive", function(data) {
+      var fsize, left, top;
+      console.log("toServerBroadLiveCall");
+      left = Math.floor(Math.random() * 100);
+      top = Math.floor(Math.random() * 100);
+      fsize = Math.floor(Math.random() * 50);
+      callN++;
+      $("#liveCall").append("<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;'>" + data.call + "</div>");
+      return $(".call" + callN).fadeOut(1500);
+    });
     sendLevel = function() {
-      console.log("sendLevel");
       s.emit("toLevel", {
         level: level
       });
