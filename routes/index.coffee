@@ -16,6 +16,11 @@ router.get "/", (req, res) ->
       title: "KIX MIX"
   return
 
+router.get "/landing", (req, res) ->
+  res.render "landing",
+    title: "KixMix | キミの想いがライブを変える【KixMix】"
+  return
+
 # GET logout
 router.get "/logout", (req,res) ->
   delete req.session.user
