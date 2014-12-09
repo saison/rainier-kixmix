@@ -63,7 +63,7 @@ $ ->
 
   # clap push
   $("#clap").click ->
-    sendBroadcast()
+    sendBroadcastLiveCall()
 
   # bgFlash
   bgColor = (value) ->
@@ -124,9 +124,6 @@ $ ->
     $("#audienceArea .countArea .count").text data.audience
 
   s.on "toLevel", (data) ->
-    console.log "tolevel"
-    console.log data
-    console.log data.level
     $("#venueLevel .levelArea span").text data.level
     bgColor data.level
     switch data.level
@@ -153,6 +150,12 @@ $ ->
   sendBroadcast = ->
     s.emit "toServerBroad", #サーバへ送信
       value: 1,
+      device: device
+    return
+
+  sendBroadcastLiveCall = ->
+    s.emit "toServerBroadLiveCall", #サーバへ送信
+      call: "HEY!",
       device: device
     return
 
