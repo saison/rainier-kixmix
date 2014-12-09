@@ -241,6 +241,11 @@ router.post "/new", (req, res) ->
 
   return
 
+#ランディングページ
+router.get "/landing", (req,res) ->
+  res.render "landing",
+    title: "KIX MIX"
+  return
 
 # GET New KixMix account
 router.get "/new", (req,res) ->
