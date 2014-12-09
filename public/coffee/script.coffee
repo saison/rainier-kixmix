@@ -1,4 +1,15 @@
 $ ->
+  # Tweet Ajax
+  $("#tweetButton").click ->
+    $.ajax(
+      url: "./tweet"
+      type: "POST"
+      data:
+        tweet: $("#tweetText").val()
+    ).done ->
+      $("#tweetText").val("")
+      return
+
   # Device Motion
   window.addEventListener "devicemotion", ((evt) ->
 

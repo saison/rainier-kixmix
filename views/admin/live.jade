@@ -1,13 +1,12 @@
 extends layout_admin_live
 
 block content
-  #bgStage
-    img#bg2(src="/images/liveBgImg2.png", alt="")
-    img#bg1(src="/images/liveBgImg1.png", alt="")
+  //- #bgStage
+  //-   img#bg2(src="/images/liveBgImg2.png", alt="")
+  //-   img#bg1(src="/images/liveBgImg1.png", alt="")
   #liveBg
     #movieBox
-      video#liveVideo(onended='this.play();', autoplay='autoplay', loop='loop')
-        source(src='/media/hal.mp4', type='video/mp4')
+      video#liveVideo(src='/media/hal.mp4', loop='loop', autoplay)
     #heatLevel.level1
     #livePeople
       #default
@@ -16,4 +15,9 @@ block content
         img(src="/images/livePeople.png", alt="livepepole")
       #rightPeople
         img(src="/images/livePeople.png", alt="livepepole")
-    #kashi High And Loud
+    #kixmixTweet
+      #twLogo
+        i.fa.fa-twitter.fa-2x
+      #content
+        h3#name KixMix
+        p#tweet KixMixを拡散して盛り上げよう！「#kixmix」

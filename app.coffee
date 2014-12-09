@@ -12,8 +12,6 @@ passport = require 'passport'
 TwitterStrategy = require('passport-twitter').Strategy
 
 
-
-
 # Twitter key
 TWITTER_CONSUMER_KEY = "vGiYRHuB0TIIRwwQk5u828zwx"
 TWITTER_CONSUMER_SECRET = "y3bkgj5PCbFRJ6UB1JRgdzQZJAmIqilcjU1SLjTJIk1mvQv0o7"
@@ -28,19 +26,19 @@ passport.deserializeUser (obj, done) ->
   return
 
 # PassportでTwitterStrategyを使うための設定
-twitter = new TwitterStrategy(
+passport.use new TwitterStrategy(
   consumerKey: TWITTER_CONSUMER_KEY
   consumerSecret: TWITTER_CONSUMER_SECRET
   callbackURL: "http://localhost:3000/auth/twitter/callback"
 , (token, tokenSecret, profile, done) ->
   profile.twitter_token = token
   profile.twitter_token_secret = tokenSecret
+  
+  process.nextTick ->
+    done null, profile
 
-  done null, profile
   return
 )
-
-passport.use twitter
 
 
 # Path

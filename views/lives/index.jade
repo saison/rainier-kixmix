@@ -2,9 +2,11 @@ extends ../layoutLive
 
 block content
   #liveHeatLevel(data-color="#ffffff")
-    form(action="./tweet",method="post")
-      input#tweetText(type="text")
-      input#tweetButton(type="submit",value="tweet")
+    - if (isSocial){
+    form#tweetForm(action="./tweet",method="post")
+      input#tweetText(type="text",name="tweet")
+      input#tweetButton(type="button",value="tweet")
+    - }
     #clap clap
     #audienceArea.heatLevelbox
       .title

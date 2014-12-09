@@ -193,13 +193,103 @@ html, body {
   right: -150px;
 }
 
-#kashi {
+/* #kashi{
   width: 100%;
   text-align: center;
   color: #fff;
   font-size: 35px;
-  text-shadow: 0 0 2px #fff;
+  @include text-shadow(0 0 2px #fff);
+
   position: absolute;
   z-index: 6;
   bottom: 50px;
+}
+ */
+aside {
+  width: 100px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  opacity: 0;
+}
+
+#videoController {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 51;
+}
+#videoController li {
+  position: absolute;
+  top: 50px;
+  left: 25px;
+  color: #ffffff;
+}
+#videoController li span {
+  font-size: 40px;
+}
+#videoController li:last-child {
+  display: none;
+}
+
+#volCntl {
+  position: fixed;
+  left: 25px;
+  top: 100px;
+  z-index: 51;
+}
+#volCntl li {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+#volCntl li span {
+  font-size: 40px;
+}
+
+#kixmixTweet {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #00aced;
+  text-align: left;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+}
+#kixmixTweet #twLogo {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+#kixmixTweet #twLogo i {
+  display: inline-block;
+  vertical-align: middle;
+  color: #ffffff;
+}
+#kixmixTweet #content {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  color: #ffffff;
+}
+#kixmixTweet #content #name {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+}
+#kixmixTweet #content #tweet {
+  float: left;
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
 }
