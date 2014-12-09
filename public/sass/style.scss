@@ -79,6 +79,7 @@ article{
       padding: 1%;
       color: #aaaaaa;
       font-size: $fontL;
+      line-height: 24px;
       background: transparent;
       border: none;
       border-bottom: 1px solid $acColor;
@@ -366,6 +367,30 @@ aside{
   }
 }
 
+#noLive{
+  width: 280px;
+  margin: auto;
+  padding: 30px 0px;
+  div{
+    padding-bottom: 30px;
+    color: #888888;
+    font-size: 20px;
+    text-align: center;
+    line-height: 30px;
+  }
+  a{
+    display: block;
+    width: 250px;
+    margin: auto;
+    padding: 6.3%;
+    color: $white;
+    text-align: center;
+    background-color: #9b59b6;
+    border-bottom: 2px solid #8e44ad;
+    @include border-radius(4px);
+  }
+}
+
 // Live HeatLevelMap
 #liveBg{
   display: block;
@@ -505,12 +530,41 @@ aside{
   }
 }
 
+#tweetForm{
+  width: 280px;
+  margin: auto;
+  input[type="text"]{
+    width: 230px;
+    height: 30px;
+    font-size: $fontM;
+    border: 1px solid #3598dc;
+    border-bottom: 2px solid #2980b9;
+    @include border-left-radius(4px);
+
+  }
+  input[type="button"]{
+    padding: 12px 9px 8px;
+    color: $white;
+    background-color: #3598dc;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    border: none;
+    border-bottom: 2px solid #2980b9;
+    @include border-right-radius(4px);
+    @include appearance(none);
+  }
+}
+
 #clap{
-  width: 200px;
-  height: 200px;
-  line-height: 200px;
+  width: 280px;
+  height: 100px;
+  margin: 30px auto;
+  line-height: 105px;
+  font-size: $fontL;
   text-align: center;
-  background-color: #f96363;
+  background-color: #95a5a6;
+  border-bottom: 2px solid #34495e;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  @include border-radius(4px);
 }
 
 #landing{

@@ -1,6 +1,9 @@
 extends ../layout
 
 block content
-  h3 参加できるライブ
-  div 現在参加できるライブはありません
-  a(href="/mypage") 戻る
+  #noLive
+    div 
+      | 現在参加できる
+      br
+      | ライブはありません
+    a(href="mypage/joinLives") ライブを追加する
