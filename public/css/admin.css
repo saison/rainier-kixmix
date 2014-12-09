@@ -90,7 +90,7 @@ html, body {
 #liveCall .callText {
   position: fixed;
   font-family: 'Open Sans', sans-serif;
-  text-shadow: 0 0 1px #000;
+  text-shadow: 0 0 1px #fff;
   color: #ffffff;
 }
 

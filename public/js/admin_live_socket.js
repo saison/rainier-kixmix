@@ -104,9 +104,9 @@
       console.log("toServerBroadLiveCall");
       left = Math.floor(Math.random() * 100);
       top = Math.floor(Math.random() * 100);
-      fsize = Math.floor(Math.random() * 50);
+      fsize = Math.floor(Math.random() * 80);
       callN++;
-      $("#liveCall").append("<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;'>" + data.call + "</div>");
+      $("#liveCall").append("<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "</div>");
       return $(".call" + callN).fadeOut(1500);
     });
     sendLevel = function() {

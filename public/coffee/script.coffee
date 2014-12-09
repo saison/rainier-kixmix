@@ -154,9 +154,39 @@ $ ->
     return
 
   sendBroadcastLiveCall = ->
+    callArr = [
+      [
+        "HEY!"
+        "rgba(255, 255, 255, 0.9)"
+      ]
+      [
+        "うりゃ！"
+        "rgba(150, 248, 255, 0.9)"
+      ]
+      [
+        "おい！"
+        "rgba(72, 169, 255, 0.9)"
+      ]
+      [
+        "ディスコ！"
+        "rgba(255, 250, 103, 0.9)"
+      ]
+      [
+        "そりゃ！"
+        "rgba(255, 160, 76, 0.9)"
+      ]
+      [
+        "はい！"
+        "rgba(255, 65, 65, 0.9)"
+      ]
+      [
+        "FuwaFuwa!"
+        "rgba(72, 169, 255, 0.9)"
+      ]
+    ]
+    index = Math.floor(Math.random()*10)
     s.emit "toServerBroadLiveCall", #サーバへ送信
-      call: "HEY!",
-      device: device
+      call: callArr[index],
     return
 
 
