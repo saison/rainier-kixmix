@@ -122,7 +122,7 @@ $ ->
     fsize = Math.floor(Math.random()*80)
     callN++
 
-    $("#liveCall").append "<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "</div>"
+    $("#liveCall").append "<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "@" + data.username + "</div>"
 
     $(".call" + callN).fadeOut(1500)
 

@@ -11,10 +11,10 @@ block content
       br
       input(type="submit",value="ログイン")
     #snsLogin
-      //a#fb(href="/auth/facebook")
-        i.fa.fa-facebook.fa-2x
-        span
-          | Facebookログイン
+      //- a#fb(href="/auth/facebook")
+      //-   i.fa.fa-facebook.fa-2x
+      //-   span
+      //-     | Facebookログイン
       br
       a#tw(href="/auth/twitter") 
         i.fa.fa-twitter.fa-2x
@@ -23,7 +23,9 @@ block content
 
 
     #kixmixCreate
-      a.guest(href="/guestlogin") GUESTログイン
+      form(action="/guestlogin",method="post")
+        input(type="text",name="guestName",placeholder="GuestName")
+        input.guest(type="submit",value="GUESTログイン")
 
     #kixmixCreate
       a.new(href="/new") KIXMIX新規登録

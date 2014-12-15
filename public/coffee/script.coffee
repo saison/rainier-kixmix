@@ -184,9 +184,11 @@ $ ->
         "rgba(72, 169, 255, 0.9)"
       ]
     ]
+    console.log $("#username").text()
     index = Math.floor(Math.random()*10)
     s.emit "toServerBroadLiveCall", #サーバへ送信
-      call: callArr[index],
+      call: callArr[index]
+      username: $("#username").text()
     return
 
 

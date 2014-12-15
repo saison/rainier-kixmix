@@ -246,27 +246,28 @@ router.post "/new", (req, res) ->
 
   return
 
-#ランディングページ
-router.get "/landing", (req,res) ->
-  res.render "landing",
-    title: "KIX MIX"
-  return
-
 # GET New KixMix account
 router.get "/new", (req,res) ->
   res.render "createUser",
     title: "KIX MIX"
   return
 
-
-router.get "/guestlogin", (req, res) ->
-  # ゲストアカウントでログイン
-  req.session.user =
-    user_id: "guest"
-    username: "ゲスト"
-
-  # ゲスト用マイページへ
-  res.redirect "/guest"
+# ゲストアカウントでログイン
+router.post "/guestlogin", (req, res) ->
+  if req.param("guestName")
+    usrename = req.param "guestName"
+    req.session.user =
+      user_id: "guest"
+      username: usrename
+    # KixMixアカウント
+    req.session.social =
+      sns: "twitter"
+      token: "2930520114-eWfkZ0BOVYV3cGZwxJDcgH6DRLFbQpdJNskoK6P"
+      secret: "75MSNfEJiqQf85MXJbHi9PLpykpzY1pYh1usv0XjFpdsU"
+    # ゲスト用マイページへ
+    res.redirect "/guest"
+  else
+    res.redirect "/"
 
   return
 
