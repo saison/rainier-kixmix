@@ -2,7 +2,8 @@ extends layout_index
 
 block content
   article
-    p Sign in
+
+    p Sign in  
 
     form(action="/login",method="post")
       input(type="text",name="user_id",placeholder="User ID",value="saison")
@@ -10,24 +11,25 @@ block content
       input(type="password",name="password",placeholder="Password",value="12345678")
       br
       input(type="submit",value="ログイン")
+
+    #kixmixCreate
+      a.guest(href="/guestlogin") GUESTログイン 
+
     #snsLogin
       //a#fb(href="/auth/facebook")
         i.fa.fa-facebook.fa-2x
         span
           | Facebookログイン
-      br
+          
       a#tw(href="/auth/twitter") 
         i.fa.fa-twitter.fa-2x
         span
           | Twitterログイン
-
-
-    #kixmixCreate
-      a.guest(href="/guestlogin") GUESTログイン
+    
 
     #kixmixCreate
       a.new(href="/new") KIXMIX新規登録
     
     
     #test
-    a(href="/landing") Test landing
+      a(href="/landing") Test landing
