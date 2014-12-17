@@ -2,6 +2,8 @@ $ ->
   count = 0
   level = 1
 
+  $("#liveVideo2").css({"opacity":"0"})
+
   # bgFlash
   bgColor = (count) ->
 
@@ -9,10 +11,15 @@ $ ->
       if $("#heatLevel").hasClass "level1"
         $("#heatLevel").removeClass "level2"
       $("#heatLevel").addClass "level1"
-      level = 1
-      sendLevel()
-      return
-    else if count < 20
+
+      $("#liveVideo2").get(0).pause()
+      $("#liveVideo").get(0).play()
+      $("#liveVideo2").animate {"opacity":"0"}, 1000, ->
+        $("#liveVideo").animate {"opacity":"1"}, 1000, ->
+          level = 1
+          sendLevel()
+          return
+    else if count < 15
       if $("#heatLevel").hasClass "level1"
         $("#heatLevel").removeClass "level1"
       if $("#heatLevel").hasClass "level3"
@@ -21,7 +28,7 @@ $ ->
       level = 2
       sendLevel()
       return
-    else if count < 30
+    else if count < 20
       if $("#heatLevel").hasClass "level2"
         $("#heatLevel").removeClass "level2"
       if $("#heatLevel").hasClass "level4"
@@ -30,7 +37,7 @@ $ ->
       level = 3
       sendLevel()
       return
-    else if count < 40
+    else if count < 30
       if $("#heatLevel").hasClass "level3"
         $("#heatLevel").removeClass "level3"
       if $("#heatLevel").hasClass "level5"
@@ -47,6 +54,7 @@ $ ->
       $("#heatLevel").addClass "level5"
       $("#livePeople #leftPeople,#livePeople #rightPeople").css
         display: "none"
+      $("#liveVideo").src("/media/hal.mp4")
       level = 5
       sendLevel()
       return
@@ -56,9 +64,13 @@ $ ->
       $("#heatLevel").addClass "levelMax"
       $("#livePeople #leftPeople,#livePeople #rightPeople").css
         display: "block"
-      level = 6
-      sendLevel()
-      return
+      $("#liveVideo").get(0).pause()
+      $("#liveVideo2").get(0).play()
+      $("#liveVideo").animate {"opacity":"0"}, 1000, ->
+        $("#liveVideo2").animate {"opacity":"1"}, 1000, ->
+          level = 6
+          sendLevel()
+          return
 
   decrementCount = ->
     $("#heatLevel").animate(
@@ -98,6 +110,7 @@ $ ->
 
   s.on "toClient", (data) ->
     count = count + data.value
+    count = count + 10
     bgColor count
     return
 
@@ -109,7 +122,7 @@ $ ->
     fsize = Math.floor(Math.random()*80)
     callN++
 
-    $("#liveCall").append "<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "</div>"
+    $("#liveCall").append "<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "@" + data.username + "</div>"
 
     $(".call" + callN).fadeOut(1500)
 

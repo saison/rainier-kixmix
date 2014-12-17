@@ -3,15 +3,28 @@
     var bgColor, callN, count, decrementCount, domain, level, s, sendLevel;
     count = 0;
     level = 1;
+    $("#liveVideo2").css({
+      "opacity": "0"
+    });
     bgColor = function(count) {
       if (count < 10) {
         if ($("#heatLevel").hasClass("level1")) {
           $("#heatLevel").removeClass("level2");
         }
         $("#heatLevel").addClass("level1");
-        level = 1;
-        sendLevel();
-      } else if (count < 20) {
+        $("#liveVideo2").get(0).pause();
+        $("#liveVideo").get(0).play();
+        return $("#liveVideo2").animate({
+          "opacity": "0"
+        }, 1000, function() {
+          return $("#liveVideo").animate({
+            "opacity": "1"
+          }, 1000, function() {
+            level = 1;
+            sendLevel();
+          });
+        });
+      } else if (count < 15) {
         if ($("#heatLevel").hasClass("level1")) {
           $("#heatLevel").removeClass("level1");
         }
@@ -21,7 +34,7 @@
         $("#heatLevel").addClass("level2");
         level = 2;
         sendLevel();
-      } else if (count < 30) {
+      } else if (count < 20) {
         if ($("#heatLevel").hasClass("level2")) {
           $("#heatLevel").removeClass("level2");
         }
@@ -31,7 +44,7 @@
         $("#heatLevel").addClass("level3");
         level = 3;
         sendLevel();
-      } else if (count < 40) {
+      } else if (count < 30) {
         if ($("#heatLevel").hasClass("level3")) {
           $("#heatLevel").removeClass("level3");
         }
@@ -52,6 +65,7 @@
         $("#livePeople #leftPeople,#livePeople #rightPeople").css({
           display: "none"
         });
+        $("#liveVideo").src("/media/hal.mp4");
         level = 5;
         sendLevel();
       } else if (count >= 60) {
@@ -62,8 +76,18 @@
         $("#livePeople #leftPeople,#livePeople #rightPeople").css({
           display: "block"
         });
-        level = 6;
-        sendLevel();
+        $("#liveVideo").get(0).pause();
+        $("#liveVideo2").get(0).play();
+        return $("#liveVideo").animate({
+          "opacity": "0"
+        }, 1000, function() {
+          return $("#liveVideo2").animate({
+            "opacity": "1"
+          }, 1000, function() {
+            level = 6;
+            sendLevel();
+          });
+        });
       }
     };
     decrementCount = function() {
@@ -96,6 +120,7 @@
     s.on("disconnect", function(client) {});
     s.on("toClient", function(data) {
       count = count + data.value;
+      count = count + 10;
       bgColor(count);
     });
     callN = 0;
@@ -106,7 +131,7 @@
       top = Math.floor(Math.random() * 100);
       fsize = Math.floor(Math.random() * 80);
       callN++;
-      $("#liveCall").append("<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "</div>");
+      $("#liveCall").append("<div class='callText call" + callN + "' style='left:" + left + "%;top:" + top + "%;font-size:" + fsize + "px;color:" + data.call[1] + ";'>" + data.call[0] + "@" + data.username + "</div>");
       return $(".call" + callN).fadeOut(1500);
     });
     sendLevel = function() {

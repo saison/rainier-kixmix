@@ -15,6 +15,20 @@ skio = ->
   io.sockets.on "connection", (socket) ->
     console.log "Connection to SocketServer"
 
+    # ログイン時
+    socket.on "isLogin", (data) ->
+      console.log "isLogin", data.user, data
+      loginCount = loginCount + 1
+      socket.broadcast.emit "toLoginUser",
+        user: data.user
+      io.sockets.emit "toLogin",
+        audience: loginCount
+      socket.broadcast.emit "toAnalytics",
+        user: data.user
+        location:
+          lat: data.location.lat
+          lon: data.location.lon
+
     # メッセージ送信（送信者にも送られる）
     socket.on "toAll", (data) ->
       console.log "toAll"
@@ -32,11 +46,13 @@ skio = ->
         device: data.device
       return
 
+    # ブロードキャスト ライブコール
     socket.on "toServerBroadLiveCall", (data) ->
       console.log "toServerBroadLiveCall"
       console.log data
       socket.broadcast.emit "toCallLive",
         call: data.call
+        username: data.username
       return
 
     # ヒートレベルの送信
@@ -46,16 +62,6 @@ skio = ->
       socket.broadcast.emit "toLevel",
         level: data.level
       return
-
-    # ログイン時
-    socket.on "toLogin", (data) ->
-      console.log "toLogin"
-      console.log data.user
-      loginCount = loginCount + 1
-      socket.broadcast.emit "toLoginUser",
-        user: data.user
-      io.sockets.emit "toLogin",
-        audience: loginCount
 
 
 

@@ -1,0 +1,26 @@
+extend layout_admin
+
+block content
+  script(src="/socket.io/socket.io.js")
+  script(type="text/javascript",src="http://maps.google.com/maps/api/js?sensor=false")
+  script(type="text/javascript",src="/js/gmap3.js")
+  script(src="/js/kixmix_analytics.js")
+  .row
+    .col-md-4
+      h3 入場者数
+      #attendance(style="font-size:20px")
+    .col-md-4
+      h3 会場ヒートレベル
+      #liveHeatLevel(style="font-size:20px")
+    .col-md-4
+      h3 総プッシュ数
+      #total(style="font-size:20px")
+      h4 総ライブコール数
+      #liveCall(style="font-size:20px")
+      h4 総シェイク数
+      #shake(style="font-size:20px")
+  .row
+    .col-md-12
+      h3 アクセスMap
+      #map(style="width:100%;height:600px")
+        

@@ -94,26 +94,35 @@ $ ->
   else if navigator.userAgent.indexOf('iPhone') == -1 and device.indexOf('Android') == -1
     device = "pc"
 
-  # # device locat
-  # if navigator.geolocation
-  #   navigator.geolocation.getCurrentPosition( (position) ->
-  #     lat = position.coords.latitude
-  #     lon = position.coords.longitude
-  #     return
-  #   )
-  # else
-
   # node socket.io
   domain = location.hostname
 
   s = io.connect 'http://' + domain + ':3000'
 
   s.on "connect", -> # 接続時
-    s.emit "toLogin",
-      user: $("aside#sideMenu h2").text()
+    console.log "connect"
+    # device locat
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition( (position) ->
+        s.emit "isLogin",
+          user: $("#username").text()
+          location:
+            lat: position.coords.latitude
+            lon: position.coords.longitude
+        return
+      )
+    else
+      s.emit "toLogin",
+        user: $("#username").text()
+        location:
+          lat: null
+          lon: null
 
 
   s.on "disconnect", (client) -> # 切断時
+    s.emit "isLogout",
+      value: "logout"
+
 
   s.on "toClient", (data) ->
     count = count + data.value
@@ -184,9 +193,11 @@ $ ->
         "rgba(72, 169, 255, 0.9)"
       ]
     ]
+    console.log $("#username").text()
     index = Math.floor(Math.random()*10)
     s.emit "toServerBroadLiveCall", #サーバへ送信
-      call: callArr[index],
+      call: callArr[index]
+      username: $("#username").text()
     return
 
 
