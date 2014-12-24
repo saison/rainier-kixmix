@@ -67,7 +67,7 @@ article{
     color: $white;
     text-align: center;
     font-size: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     padding-top: 20px;
   }
 
@@ -79,7 +79,7 @@ article{
       margin: 3% auto;
       padding: 1%;
       color: $white;
-      font-size: $fontL;
+      font-size: $fontM;
       line-height: 24px;
       background: transparent;
       border: none;
@@ -91,7 +91,7 @@ article{
       width: 97.5%;
       margin: 3% auto;
       padding: 5px;
-      font-size: $fontL;
+      font-size: $fontM;
       background: transparent;
       border: none;
       border-bottom: 1px solid $white;
@@ -103,7 +103,7 @@ article{
       margin: 3% auto;
       padding: 5px;
       color: $white;
-      font-size: $fontL;
+      font-size: $fontM;
       background: transparent;
       border: none;
       border-bottom: 1px solid $white;
@@ -114,7 +114,8 @@ article{
       width: 97.5%;
       margin: 0% auto 3%;
       padding: 5px;
-      font-size: $fontL;
+      color: $white;
+      font-size: $fontM;
       background: transparent;
       border: none;
       border-bottom: 1px solid $white;
@@ -136,8 +137,7 @@ article{
     }
 
     #gender{
-      margin-top: 8%;
-      font-size: $fontL;
+      font-size: $fontM;
       input[type="radio"]{
         display: none;
         width: 0;
@@ -149,18 +149,18 @@ article{
         display: inline-block;
         width: 50%;
         padding: 4%;
-        background: $white;
-        color: #3c3c3c;
+        background: #3c3c3c;
+        color: #5c5c5c;
         text-align: center;
         border: 1px solid $mainColor;
         @include box-sizing(border-box);
       }
       input[type="radio"]:checked + .switch-on {
-        background-color: $mainColor;
+        background-color: #3498db;
         color: $white;
       }
       input[type="radio"]:checked + .switch-off {
-        background-color: $mainColor;
+        background-color: #ff69b4;
         color: $white;
       }
     }
