@@ -41,7 +41,7 @@ $ ->
     count++
     if $("#youerLevel .graph").height() < 300
       $("#youerLevel .graph").animate
-        "height": "+=10px"
+        "height": "+=30px"
         ,10
     sendBroadcast()
 
@@ -173,7 +173,7 @@ $ ->
         "rgba(150, 248, 255, 0.9)"
       ]
       [
-        "おい！"
+        "よっしゃ！"
         "rgba(72, 169, 255, 0.9)"
       ]
       [

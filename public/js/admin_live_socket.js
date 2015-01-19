@@ -24,7 +24,7 @@
             sendLevel();
           });
         });
-      } else if (count < 15) {
+      } else if (count < 20) {
         if ($("#heatLevel").hasClass("level1")) {
           $("#heatLevel").removeClass("level1");
         }
@@ -34,7 +34,7 @@
         $("#heatLevel").addClass("level2");
         level = 2;
         sendLevel();
-      } else if (count < 20) {
+      } else if (count < 30) {
         if ($("#heatLevel").hasClass("level2")) {
           $("#heatLevel").removeClass("level2");
         }
@@ -44,7 +44,7 @@
         $("#heatLevel").addClass("level3");
         level = 3;
         sendLevel();
-      } else if (count < 30) {
+      } else if (count < 40) {
         if ($("#heatLevel").hasClass("level3")) {
           $("#heatLevel").removeClass("level3");
         }
@@ -68,7 +68,7 @@
         $("#liveVideo").src("/media/hal.mp4");
         level = 5;
         sendLevel();
-      } else if (count >= 60) {
+      } else if (count >= 70) {
         if ($("#heatLevel").hasClass("level5")) {
           $("#heatLevel").removeClass("level5");
         }
@@ -120,7 +120,7 @@
     s.on("disconnect", function(client) {});
     s.on("toClient", function(data) {
       count = count + data.value;
-      count = count + 10;
+      count = count + 5;
       bgColor(count);
     });
     callN = 0;
