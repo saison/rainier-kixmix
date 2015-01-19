@@ -37,7 +37,7 @@ router.post "/login", (req, res) ->
     sha1 = crypto.createHash('sha1')
     sha1.update(password)
     password = sha1.digest('hex')
-    console.log password
+    # console.log password
 
     userLoginSql = "select * from users WHERE user_id = ? AND password = ?"
     userLoginData = [user_id, password]
@@ -74,11 +74,11 @@ router.get "/auth/twitter/callback", passport.authenticate("twitter",
 
   loginSql = "SELECT * FROM users WHERE user_id = ?"
   user_id  = req.user.id
-  console.log loginSql
-  console.log user_id
+  # console.log loginSql
+  # console.log user_id
   mysqlLib.getConnection (err, mclient) ->
     mclient.query loginSql, user_id, (err, result) ->
-      console.log result
+      # console.log result
       if typeof(result[0]) isnt "undefined"
         req.session.user =
           user_id: result[0].user_id
@@ -100,7 +100,7 @@ passport.use new FacebookStrategy(
 , (accessToken, refreshToken, profile, done) ->
   profile.facebook_accessToken = accessToken
   profile.facebook_refreshToken = refreshToken
-  console.log accessToken,refreshToken
+  # console.log accessToken,refreshToken
   done null, profile
   return
 )
@@ -186,7 +186,7 @@ router.post "/createsns", (req, res) ->
       mysqlLib.getConnection (err, mclient) ->
         # Insert Users
         mclient.query userInsertSql, userInsertData, (err, result) ->
-          console.log err,result
+          # console.log err,result
 
           # SetSession
           req.session.user =
@@ -231,7 +231,7 @@ router.post "/new", (req, res) ->
       mysqlLib.getConnection (err, mclient) ->
         # Insert Users
         mclient.query userInsertSql, userInsertData, (err, result) ->
-          console.log err,result
+          # console.log err,result
 
           # SetSession
           req.session.user =

@@ -6,13 +6,13 @@ TwitterStrategy = require('passport-twitter').Strategy
 router = express.Router()
 
 router.get "/", (req, res) ->
-  console.log req.session.user
+  # console.log req.session.user
 
   mysqlLib.getConnection (err, mclient) ->
     allLivesSql = "SELECT * FROM lives"
 
     mclient.query allLivesSql, "", (err, allLivesRows) ->
-      console.log allLivesRows
+      # console.log allLivesRows
 
       res.render "guest/index",
         title: "Kix Mix"
@@ -36,7 +36,7 @@ router.get "/guestjoinlive/:live_id([0-9]+)", (req, res) ->
             liveInfo: liveInfo
 
     else
-      console.log "isSet false"
+      # console.log "isSet false"
       res.redirect "/guest"
   else
     res.redirect "/"
@@ -46,7 +46,7 @@ router.post "/guestjoinlive/tweet", (req, res) ->
   tweet = req.param("tweet")
   tweetText = encodeURIComponent(tweet+" #KixMix")
 
-  console.log tweet
+  # console.log tweet
 
   passport._strategies.twitter._oauth.getProtectedResource "https://api.twitter.com/1.1/statuses/update.json?status=" + tweetText,
   "POST",

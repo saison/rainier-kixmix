@@ -38,7 +38,7 @@ router.get "/mypage", (req, res) ->
   mysqlLib.getConnection (err, mclient) ->
     adminLivesSql = "SELECT * FROM lives"
     mclient.query adminLivesSql, sess.user_id, (err, adminLivesRows) ->
-      console.log adminLivesRows
+      # console.log adminLivesRows
       res.render "admin/mypage",
         title: "Kix Mix"
         user: sess
@@ -82,7 +82,7 @@ router.post "/add", (req,res) ->
   liveInsertSql  = "INSERT INTO lives SET ?"
   mysqlLib.getConnection (err, mclient) ->
     mclient.query liveInsertSql, liveInsertData, (err, result) ->
-      console.log err,result
+      # console.log err,result
       sess = req.session.user
       res.redirect "/admin/mypage"
   return

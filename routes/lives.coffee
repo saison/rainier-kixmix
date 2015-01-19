@@ -35,11 +35,11 @@ router.get "/:live_id([0-9]+)", (req, res) ->
                 isSocial: isSocial
                 liveInfo: liveInfo
           else
-            console.log "isSQL false"
+            # console.log "isSQL false"
             res.redirect "../mypage"
 
     else
-      console.log "isSet false"
+      # console.log "isSet false"
       res.redirect "../mypage"
   else
     res.redirect "/"
@@ -49,7 +49,7 @@ router.post "/tweet", (req, res) ->
   tweet = req.param("tweet")
   tweetText = encodeURIComponent(tweet+" #LiveKixMix")
 
-  console.log tweet
+  # console.log tweet
 
   passport._strategies.twitter._oauth.getProtectedResource "https://api.twitter.com/1.1/statuses/update.json?status=" + tweetText,
   "POST",

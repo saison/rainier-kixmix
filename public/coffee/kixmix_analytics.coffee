@@ -20,7 +20,6 @@ $ ->
   s = io.connect 'http://' + domain + ':3000'
 
   s.on "connect", -> # 接続時
-    console.log "test"
 
   s.on "disconnect", (client) -> # 切断時
 

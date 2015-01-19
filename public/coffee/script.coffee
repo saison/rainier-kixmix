@@ -100,7 +100,6 @@ $ ->
   s = io.connect 'http://' + domain + ':3000'
 
   s.on "connect", -> # 接続時
-    console.log "connect"
     # device locat
     if navigator.geolocation
       navigator.geolocation.getCurrentPosition( (position) ->
@@ -193,7 +192,6 @@ $ ->
         "rgba(72, 169, 255, 0.9)"
       ]
     ]
-    console.log $("#username").text()
     index = Math.floor(Math.random()*10)
     s.emit "toServerBroadLiveCall", #サーバへ送信
       call: callArr[index]

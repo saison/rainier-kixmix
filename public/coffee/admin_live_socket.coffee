@@ -116,7 +116,6 @@ $ ->
 
   callN = 0
   s.on "toCallLive", (data) ->
-    console.log "toServerBroadLiveCall"
     left = Math.floor(Math.random()*100)
     top = Math.floor(Math.random()*100)
     fsize = Math.floor(Math.random()*80)
