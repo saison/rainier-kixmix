@@ -47,7 +47,7 @@ router.get "/:live_id([0-9]+)", (req, res) ->
 router.post "/tweet", (req, res) ->
   sess = req.session.social
   tweet = req.param("tweet")
-  tweetText = encodeURIComponent(tweet+" #KixMix")
+  tweetText = encodeURIComponent(tweet+" #LiveKixMix")
 
   console.log tweet
 
