@@ -3,7 +3,7 @@ extends layout_index
 block content
   article
 
-    p Sign in  
+    p Sign in
 
     form(action="/login",method="post")
       input(type="text",name="user_id",placeholder="User ID")
@@ -23,14 +23,14 @@ block content
       //-   span
       //-     | Facebookログイン
       br
-      a#tw(href="/auth/twitter") 
+      a#tw(href="/auth/twitter")
         i.fa.fa-twitter.fa-2x
         span
           | Twitterログイン
 
     #kixmixCreate
       a.new(href="/new") KIXMIX新規登録
-    
-    
+
+
     #test
-      a(href="/landing") Test landing
+      a(href="/landing") ランディングページ
