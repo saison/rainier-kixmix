@@ -5,8 +5,6 @@
       return $.get("/admin/search", function(data) {
         var n, name, text;
         n = Math.floor(Math.random() * 10);
-        console.log(n);
-        console.log(data.statuses[n]);
         name = data.statuses[n].user.name;
         text = data.statuses[n].text;
         $("#name").fadeOut(200, function() {

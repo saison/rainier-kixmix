@@ -11,9 +11,7 @@
     map = new google.maps.Map($("#map").get(0), options);
     domain = location.hostname;
     s = io.connect('http://' + domain + ':3000');
-    s.on("connect", function() {
-      return console.log("test");
-    });
+    s.on("connect", function() {});
     s.on("disconnect", function(client) {});
     attendance = 0;
     s.on("toAnalytics", function(data) {
