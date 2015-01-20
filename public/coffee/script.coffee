@@ -41,7 +41,7 @@ $ ->
     count++
     if $("#youerLevel .graph").height() < 300
       $("#youerLevel .graph").animate
-        "height": "+=30px"
+        "height": "+=10px"
         ,10
     sendBroadcast()
 

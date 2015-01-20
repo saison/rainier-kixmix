@@ -64,8 +64,6 @@ app.use bodyParser.urlencoded(extended: false)
 app.use cookieParser()
 app.use session(
   secret: "5d65t7781yueiweatgsaruio1iiohgas"
-  rolling: true
-  resave: false
 )
 app.use passport.initialize()
 app.use passport.session()
